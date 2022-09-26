@@ -29,7 +29,7 @@ const Burger = styled.div`
     ${props => props.burgerState !== BURGER_STATES.ARROW ? css`
         cursor: pointer;
         * {
-            //backdrop-filter: invert(1) grayscale(1);
+            backdrop-filter: invert(1) grayscale(1);
         }
     ` : css`
         * {
