@@ -16,6 +16,7 @@ exports.createPages = ({ graphql, actions }) => {
         }
       }
     `).then(result => {
+      console.log({result})
       result.data.allDatoCmsWork.edges.map(({ node: work }) => {
         createPage({
           path: `cases/${work.slug}`,
