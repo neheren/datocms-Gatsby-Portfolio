@@ -8,6 +8,8 @@ import Menu from '../components/Menu'
 import About from '../components/About/About'
 import {HelmetDatoCms} from 'gatsby-source-datocms'
 
+
+
 const IndexPage = ({data}) => {
 	return	<ThemeProvider theme={theme}>
 		<Menu/>
