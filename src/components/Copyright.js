@@ -14,9 +14,10 @@ const Root = styled.div`
 `
 
 const Rotation = styled.div`
-    writing-mode: vertical-lr;
-    transform: rotate(180deg);
-    transform-origin: center;
+	writing-mode: vertical-lr;
+	transform: rotate(180deg);
+	transform-origin: center;
+  	font-size: 10px;
 `
 
 const Line = styled.div`
@@ -29,6 +30,7 @@ const Line = styled.div`
 const Bold = styled.div`
 	color: black;
     font-weight: bolder;
+  
 `
 const Copyright = () => {
 	return (

@@ -113,7 +113,6 @@ const scrollDown = () => {
 const front = (props) => {
 	const { isProject } = props || false
 	return (
-		<Hover scale={10} disable={isProject}>
 			<Root>
 				<MenuWrapper />
 				<CopyrightWrapper>
@@ -126,7 +125,6 @@ const front = (props) => {
 					</Video>
 				<ArrowDown src={arrowDown} onClick={scrollDown.bind(this)}/>
 			</Root>
-		</Hover>
 	)
 }
 
