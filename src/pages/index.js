@@ -29,46 +29,46 @@ export default IndexPage
 
 export const query = graphql`
   query IndexQuery {
-    home: datoCmsHome {
-      modelVideo {
-        url
-      }
-      seoSettings {
-        description
-        title
-        twitterCard
-      }
-	  seoMetaTags {
-	    tags
-       }
+  home: datoCmsHome {
+    modelVideo {
+      url
     }
-
-    about: datoCmsAboutPage {
+    seoSettings {
+      description
       title
-      subtitle
-      bio
-      photo {
-        fluid(maxWidth: 600, imgixParams: { fm: "jpg", auto: "compress" }) {
-          ...GatsbyDatoCmsSizes
-        }
-      }
-      
+      twitterCard
     }
-  
-    allDatoCmsWork(sort: { fields: [position], order: ASC }) {
-      edges {
-        node {
-          id
-          title
-          slug
-          excerpt
-          coverImage {
-            fluid(maxWidth: 450, imgixParams: { fm: "jpg", auto: "compress" }) {
-              ...GatsbyDatoCmsSizes
-            }
+    seoMetaTags {
+      tags
+    }
+  }
+  about: datoCmsAboutPage {
+    title
+    subtitle
+    bio
+    photo {
+      fluid(maxWidth: 600, imgixParams: {fm: "jpg", auto:
+"compress"}) {
+        ...GatsbyDatoCmsSizes
+      }
+    }
+  }
+  allDatoCmsWork(sort: {position: ASC}) {
+    edges {
+      node {
+        id
+        title
+        slug
+        excerpt
+        coverImage {
+          fluid(maxWidth: 450, imgixParams: {fm: "jpg", auto:
+"compress"}) {
+            ...GatsbyDatoCmsSizes
           }
         }
       }
     }
   }
+}
+
 `
