@@ -50,7 +50,7 @@ const Arrow = styled.img`
   margin: ${props => props.theme.spacing(0, -4)};
   transition: 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
   &:hover{
-    
+
     width: 32px !important;
   }
     /* transform: scale() !important; */
@@ -72,7 +72,7 @@ export default ({ data }) => (
 		<Front isProject videoLink={data.datoCmsWork.video ? data.datoCmsWork.video.url : ''} caseName={data.datoCmsWork.title} />
 		<HelmetDatoCms seo={data.datoCmsWork.seoMetaTagsseoMetaTags} />
 		<Doc>
-      <Menu isProject></Menu>
+        <Menu isProject></Menu>
 			<Container>
 				<Header>
 					{data.datoCmsWork.title}
@@ -99,7 +99,7 @@ export default ({ data }) => (
 				<div
 					className="sheet__body"
 					dangerouslySetInnerHTML={{
-						__html: data.datoCmsWork.descriptionNode.childMarkdownRemark.html,
+						__html: data.datoCmsWork.description,
 					}}
 				/>
 				{/* <div className="sheet__gallery">
@@ -126,11 +126,7 @@ export const query = graphql`
           src
         }
       }
-      descriptionNode {
-        childMarkdownRemark {
-          html
-        }
-      }
+      description
       coverImage {
         url
         fluid(maxWidth: 600, imgixParams: { fm: "jpg", auto: "compress" }) {
