@@ -1,8 +1,8 @@
 {
-  "name": "gatsby-datocms-demo",
-  "description": "Gatsby DatoCMS creative portfolio demo",
+  "name": "slytter-portfolio",
+  "description": "Slytters portfolio",
   "version": "1.0.0",
-  "author": "Stefano Verna <s.verna@datocms.com>",
+  "author": "Nikolaj Schlüter Nielsen",
   "dependencies": {
     "@mdx-js/mdx": "^2.2.1",
     "@mdx-js/react": "^2.2.1",
