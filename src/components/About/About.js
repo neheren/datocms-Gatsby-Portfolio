@@ -51,7 +51,7 @@ const GradiantBG = styled.div`
         grid-template-columns: repeat(2, 1fr);
     }
     width: 100%;
-    background-image: linear-gradient(0deg, #0e0e0e 0%, #0c0c0c calc(100% - 100vw / 10), rgba(1, 1, 1, 0));
+    background-image: linear-gradient(0deg, #212121 0%, #0c0c0c calc(100% - 100vw / 10), rgba(1, 1, 1, 0));
 `
 
 const GradiantBGWrapper = styled.div`

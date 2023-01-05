@@ -39,9 +39,7 @@ const A = styled(CaseThump)`
 `
 
 const Root = styled.div`
-    background-color: rgba(1, 0, 0, 0.5);
     overflow:hidden;
-    background: #EFEFEF;
     padding-top: 1px;
     display: grid;
     grid-template-columns: repeat(10, 1fr);

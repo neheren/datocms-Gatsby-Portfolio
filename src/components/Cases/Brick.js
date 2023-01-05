@@ -71,6 +71,7 @@ const Brick = props => {
 				<Title>
 					{props.title}
 				</Title>
+				{props.children}
 			</Content>
 			}
 		</Root>
@@ -83,6 +84,7 @@ Brick.propTypes = {
 	projectOpened: PropTypes.bool,
 	getTileIndex: PropTypes.func,
 	title: PropTypes.string,
+	children: PropTypes.node,
 }
 
 export default Brick

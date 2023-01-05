@@ -4,30 +4,30 @@ import Brick from '../Cases/Brick'
 import CaseThump from '../Cases/CaseThump'
 
 const Root = styled.div`
-    background-color: rgba(1, 0, 0, 1);
-    overflow:hidden;
-    padding-top: 1px;
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    @media ${props => props.theme.media.lg} {
-        grid-template-columns: repeat(8, 1fr);
-    }
-    @media ${props => props.theme.media.md} {
-        grid-template-columns: repeat(6, 1fr);
-    }
-    @media ${props => props.theme.media.sm} {
-        grid-template-columns: repeat(2, 1fr);
-    }
+  background-image: linear-gradient(180deg, #212121 0%, #1c1c1c calc(100% - 100vw / 10), rgba(1, 1, 1, 0));
+  overflow: hidden;
+  padding-top: 1px;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  @media ${props => props.theme.media.lg} {
+    grid-template-columns: repeat(8, 1fr);
+  }
+  @media ${props => props.theme.media.md} {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  @media ${props => props.theme.media.sm} {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `
 
-const C = styled(CaseThump)`
+const C = styled(Brick)`
     ${props => props.big && css`
         grid-column: auto / span 2;
         grid-row: auto / span 2;
     `}
 `
 
-const A = styled(CaseThump)`
+const A = styled(Brick)`
     content: 'all projects';
 `
 
@@ -51,35 +51,38 @@ const B = styled(Brick)`
         `}
     }
 `
+const HeaderSection = <div>
+	<p>
+		Yeess
+
+	</p>
+</div>
 
 
 export const Footer = () => {
 
 	const p = {
 		getTileIndex: () => 1,
+
 	}
 
+
 	const tiles = [
-		<B lg {...p} />,    <B db {...p} />,                        <B sm b {...p} />,  <B md b {...p} />,  <B sm b {...p} />,<B sm {...p} />,<B sm {...p} />,      <B md {...p} />,    <B lg b {...p} />,
-		<B lg {...p} />,    <B md {...p} />,    <B sm {...p} />,    <B sm {...p} />,    <B {...p} />,       <B {...p} />,    <B sm {...p} />, <B sm {...p} />,      <B md {...p} />,    <B lg {...p} />,
-		<B lg {...p} />,    <B md {...p} />,    <C sm {...p} />,                       <C {...p} />,       <C {...p} /> ,   <C {...p} />,    <A{...p} />,         <B md {...p} />,    <B lg {...p} />,
-		<B lg {...p} />,    <B md {...p} />,                                            <C b {...p} />,     <C {...p} />,    <C {...p} />,    <C no {...p} />,         <B md {...p} />,    <B lg {...p} />,
-		<B lg {...p} />,    <B md {...p} />,    <B sm {...p} />,    <B sm {...p} />,    <C sm {...p} />,    <C {...p} />,    <B sm {...p} />, <B sm {...p} />,      <B md {...p} />,    <B lg {...p} />,
-		<B lg {...p} />,    <B md {...p} />,    <B sm {...p} />,    <B sm {...p} />,    <B sm {...p} />,    <B {...p} />,    <B sm {...p} />, <B sm {...p} />,      <B md {...p} />,    <B lg b {...p} />,
-		<B lg b {...p} />,  <B md {...p} />,    <B sm {...p} />,    <B sm {...p} />,    <B sm b {...p} />,  <B {...p} />,    <B sm {...p} />, <B sm b {...p} />,    <B md b {...p} />,  <B lg b {...p} />,
-		<B lg b {...p} />,  <B md b {...p} />,  <B sm  {...p} />,   <B sm b {...p} />,  <B sm b {...p} />,  <B b {...p} />,  <B sm b {...p} />,<B sm b {...p} />,   <B md b {...p} />,  <B lg b {...p} />,
+		// <B lg {...p} />,    <B md {...p} />,                        <B sm b {...p} />,  <B md b {...p} />,  <B sm b {...p} />,<B sm {...p} />,<B sm {...p} />,      <B md {...p} />,    <B lg b {...p} />,
+		<B lg {...p} />,    <B md {...p} />,    <B sm  b {...p} />,    <B sm b {...p} />,    <B b {...p} />,       <B b {...p} />,    <B sm {...p} />, <B b sm {...p} />,      <B b md {...p} />,   <B lg {...p} b />,
+		<B lg {...p} />,    <B md {...p} />,    <B sm {...p} />,    <B sm {...p} />,    <B b {...p} />,       <B {...p} />,    <B sm {...p} />, <B sm {...p} />,      <B md b {...p} />,   <B lg {...p} />,
+		<B lg {...p} />,    <B {...p} db title={'the end'}>{HeaderSection}</B>,   <B sm {...p} />,    <B {...p} sm />,       <B {...p} md/>,    <B sm {...p} />, <B sm {...p} />,      <B md {...p} d />,   <B lg {...p} />,
 	]
 
 	return (
-		<>
-			<Root>
-				{
-					tiles.map((tile, i) => <tile {...tile.props} key={i}/>)
-				}
-			</Root>
-		</>
+		<Root>
+			{
+				tiles.map((tile, i) => <tile.type {...tile.props} key={i}/>)
+			}
+		</Root>
 	)
-  //
+
+	//
 	// return (
 	// <footer>
 	// 	<Root>
