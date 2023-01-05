@@ -7,6 +7,7 @@ import Cases from '../components/Cases'
 import Menu from '../components/Menu'
 import About from '../components/About/About'
 import {HelmetDatoCms} from 'gatsby-source-datocms'
+import {Footer} from '../components/Footer/Footer'
 
 
 
@@ -17,6 +18,7 @@ const IndexPage = ({data}) => {
 		<Front videoLink={'http://kirstineogsigurd.dk/portfoliovideo.mp4'} isProject={false}/>
 		<Cases />
 		<About data={data.about}/>
+		<Footer/>
 	</ThemeProvider>
 }
 

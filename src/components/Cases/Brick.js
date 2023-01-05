@@ -69,7 +69,7 @@ const Brick = props => {
 			{props.db &&
 			<Content db={props.db}>
 				<Title>
-					cases
+					{props.title}
 				</Title>
 			</Content>
 			}
@@ -82,6 +82,7 @@ Brick.propTypes = {
 	db: PropTypes.bool,
 	projectOpened: PropTypes.bool,
 	getTileIndex: PropTypes.func,
+	title: PropTypes.string,
 }
 
 export default Brick

@@ -26,25 +26,3 @@ const About = ({ data: { about } }) => (
 )
 
 export default About
-
-export const query = graphql`
-  query AboutQuery1 {
-    about: datoCmsAboutPage {
-      seoMetaTags {
-        ...GatsbyDatoCmsSeoMetaTags
-      }
-      title
-      subtitle
-      photo {
-        fluid(maxWidth: 600, imgixParams: { fm: "jpg", auto: "compress" }) {
-          ...GatsbyDatoCmsSizes
-        }
-      }
-      bioNode {
-        childMarkdownRemark {
-          html
-        }
-      }
-    }
-  }
-`
