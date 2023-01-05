@@ -12,7 +12,7 @@ console.log({apiKey})
 
 module.exports = {
   siteMetadata: {
-    title: `Creative Portfolio`,
+    title: `Portfolio of Nikolaj Schlüter Nielsen`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

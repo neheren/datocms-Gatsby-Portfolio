@@ -46,7 +46,7 @@ const TemplateWrapper = ({ children }) => (
           <div
             className="sidebar__intro"
             dangerouslySetInnerHTML={{
-              __html: data.datoCmsHome.introText.childMarkdownRemark.html,
+              __html: data.datoCmsHome.introText,
             }}
           />
           <ul className="sidebar__menu">
