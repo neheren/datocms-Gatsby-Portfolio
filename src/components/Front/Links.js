@@ -17,28 +17,25 @@ const LinkItem = styled.a`
     text-decoration: none;
     color: black;
     font-weight: ${props => props.first ? 'bold' : 'normal'};
-    margin-left: ${props => props.first ? props.theme.spacing(2) : props.theme.spacing(8)};
+    margin-right: ${props => props.first ? props.theme.spacing(2) : props.theme.spacing(2)};
     @media ${props => props.theme.media.md} {
     	margin-left: ${props => props.first ? props.theme.spacing(0) : props.theme.spacing(1.5)};
     }
     @media ${props => props.theme.media.sm} {
         font-size: 12px;
     }
-
-    
 `
 
 function Links() {
-    return (
-        <Root>
-            <LinkWrapper>
-                <LinkItem href="/" first>schlüter</LinkItem>
-                <LinkItem href="/">cases</LinkItem>
-                <LinkItem href="/">about</LinkItem>
-                <LinkItem href="/">expirience</LinkItem>
-            </LinkWrapper>
-        </Root>
-    )
+	return (
+		<Root>
+			<LinkWrapper>
+				<LinkItem href="/" first>schlüter</LinkItem>
+				<LinkItem href="/cases">cases</LinkItem>
+				<LinkItem href="/">expirience</LinkItem>
+			</LinkWrapper>
+		</Root>
+	)
 }
 
 Links.propTypes = {

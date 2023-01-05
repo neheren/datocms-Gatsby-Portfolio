@@ -5,7 +5,6 @@ import slytLogo from '../../graphics/slyt.svg'
 import arrowDown from '../../graphics/downArrow.svg'
 import Links from './Links'
 import Copyright from '../Copyright'
-import HoverTransformer from '../HoverTransformer'
 import InlineVideo from './Video'
 import ProjectLinks from './ProjectLinks'
 
@@ -19,7 +18,6 @@ const Root = styled.div`
     @media ${props => props.theme.media.md} {
 	    grid-template-columns: ${props => props.theme.spacing(8)} auto ${props => props.theme.spacing(8)};
 	    grid-template-rows: ${props => props.theme.spacing(8)} auto ${props => props.theme.spacing(8)};
-
 	}
 `
 
@@ -40,17 +38,6 @@ const Video = styled.div`
 
 `
 
-const Hover = styled.div`
-    background: #EFEFEF;
-
-    grid-column: 2 / 3;
-    grid-row: 2 / 3;
-    height: 100%;
-    width: 100%;
-//    position: absolute;
-    display: flex;
-
-`
 
 const MenuWrapper = styled.div`
     margin: ${props => props.theme.spacing(4)};
@@ -113,23 +100,23 @@ const scrollDown = () => {
 const front = (props) => {
 	const { isProject } = props || false
 	return (
-			<Root>
-				<MenuWrapper />
-				<CopyrightWrapper>
-					{!isProject && <Copyright />}
-				</CopyrightWrapper>
-				{isProject ? <ProjectLinks caseName={props.caseName} /> : < Links/>}
-					<Video>
-						<InlineVideo videoLink={props.videoLink} isProject={isProject} style={{transform: 'translateZ(150px) translateX(-10%)'}} />
-						{!isProject && <Logo src={slytLogo} />}
-					</Video>
-				<ArrowDown src={arrowDown} onClick={scrollDown.bind(this)}/>
-			</Root>
+		<Root>
+			<MenuWrapper />
+			<CopyrightWrapper>
+				{!isProject && <Copyright />}
+			</CopyrightWrapper>
+			{isProject ? <ProjectLinks caseName={props.caseName} /> : < Links/>}
+			<Video>
+				<InlineVideo videoLink={props.videoLink} isProject={isProject} style={{transform: 'translateZ(150px) translateX(-10%)'}} />
+				{!isProject && <Logo src={slytLogo} />}
+			</Video>
+			<ArrowDown src={arrowDown} onClick={scrollDown.bind(this)}/>
+		</Root>
 	)
 }
 
 front.propTypes = {
-    caseName: PropTypes.string,
+	caseName: PropTypes.string,
 	videoLink: PropTypes.string,
 	isProject: PropTypes.bool,
 }

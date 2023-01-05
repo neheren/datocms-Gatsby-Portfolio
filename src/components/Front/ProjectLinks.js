@@ -34,19 +34,19 @@ const Arrow = styled.img`
 
 
 function ProjectLinks(props) {
-    return (
-        <Root>
-            <AniLink to="/cases" swipe direction="right" duration={0.4} style={{textDecoration: 'none'}}>
-                <LinkItem first>cases</LinkItem>            
-            </AniLink>
-            <Arrow src={projectArrow} />
-            <LinkItem>{props.caseName}</LinkItem>
-        </Root>
-    )
+	return (
+		<Root>
+			<AniLink to="/cases" swipe direction="right" duration={0.4} style={{textDecoration: 'none'}}>
+				<LinkItem first>cases</LinkItem>
+			</AniLink>
+			<Arrow src={projectArrow} />
+			<LinkItem>{props.caseName}</LinkItem>
+		</Root>
+	)
 }
 
 ProjectLinks.propTypes = {
-    caseName: PropTypes.string,
+	caseName: PropTypes.string,
 }
 
 export default ProjectLinks

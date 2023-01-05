@@ -3,13 +3,13 @@ import Slider from 'react-slick'
 import { HelmetDatoCms } from 'gatsby-source-datocms'
 import Img from 'gatsby-image'
 import { graphql } from 'gatsby'
-import Front from '../components/Front';
+import Front from '../components/Front'
 import styled, { ThemeProvider, css } from 'styled-components'
 import theme from '../styles/theme'
 import Container from '../components/Shared/Container'
 import rectArrow from '../graphics/rect-arrow.svg'
 import TagName from './Work/Tag'
-import Menu from '../components/Menu';
+import Menu from '../components/Menu'
 
 
 
@@ -72,7 +72,7 @@ export default ({ data }) => (
 		<Front isProject videoLink={data.datoCmsWork.video ? data.datoCmsWork.video.url : ''} caseName={data.datoCmsWork.title} />
 		<HelmetDatoCms seo={data.datoCmsWork.seoMetaTagsseoMetaTags} />
 		<Doc>
-        <Menu isProject></Menu>
+			<Menu isProject></Menu>
 			<Container>
 				<Header>
 					{data.datoCmsWork.title}
