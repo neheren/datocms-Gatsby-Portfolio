@@ -9,16 +9,19 @@ import About from '../components/About/About'
 import {HelmetDatoCms} from 'gatsby-source-datocms'
 import {Footer} from '../components/Footer/Footer'
 
+import '../styles/index.sass'
 
 
 const IndexPage = ({data}) => {
 	return	<ThemeProvider theme={theme}>
-		<Menu/>
-		<HelmetDatoCms seo={data.seoMetaTags} />
-		<Front videoLink={'http://kirstineogsigurd.dk/portfoliovideo.mp4'} isProject={false}/>
-		<Cases />
-		<About data={data.about}/>
-		<Footer/>
+		<>
+			<Menu/>
+			<HelmetDatoCms seo={data.seoMetaTags} />
+			<Front videoLink={'http://kirstineogsigurd.dk/portfoliovideo.mp4'} isProject={false}/>
+			<Cases />
+			<About data={data.about}/>
+			<Footer/>
+		</>
 	</ThemeProvider>
 }
 
