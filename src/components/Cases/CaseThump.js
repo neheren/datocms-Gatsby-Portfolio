@@ -150,7 +150,7 @@ const CaseThump = (props) => {
 
 				to={'/cases/' + project.case.slug}>
 
-				<Root className={props.className} no={props.no} image={(props.no || project && project.case.coverImage.fluid.src) || null}>
+				<Root className={props.className} no={props.no} image={(props.no || project && project.case.coverImage.fluid?.src) || null}>
 					<Content>
 					</Content>
 				</Root>
