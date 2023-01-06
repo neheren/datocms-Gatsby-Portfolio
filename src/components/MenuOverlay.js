@@ -3,6 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 import HoverTransformer from './HoverTransformer'
 import slyt from '../graphics/slyt.svg'
+import PropTypes from 'prop-types'
 
 const Root = styled.div`
     z-index: 2999;
@@ -73,9 +74,14 @@ const Logo = styled.img`
 `
 
 function MenuOverlay(props) {
+
+	const {
+		onClose,
+	} = props
+
 	return (
-		<Root>
-			<MenuWrapper>
+		<Root onClick={onClose}>
+			<MenuWrapper >
 				<HoverTransformer>
 					<Logo src={slyt}></Logo>
 				</HoverTransformer>
@@ -97,7 +103,7 @@ function MenuOverlay(props) {
 }
 
 MenuOverlay.propTypes = {
-
+	onClose: PropTypes.func.isRequired,
 }
 
 export default MenuOverlay

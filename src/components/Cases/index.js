@@ -39,6 +39,8 @@ const A = styled(CaseThump)`
 `
 
 const Root = styled.div`
+    background: #EFEFEF;
+
     overflow:hidden;
     padding-top: 1px;
     display: grid;

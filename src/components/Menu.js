@@ -166,10 +166,18 @@ export default class Menu extends Component {
     }
 
     shouldDisplayArrow () {
-        return window.pageYOffset < 5
+        return window.pageYOffset < 8
     }
 
     toggleCollapsed (){
+        if(window.pageYOffset < 8) {
+            if(this.props.isProject) {
+                window.history.back();
+            }
+            // navigate back with window.history
+            return
+        }
+
         this.setState({
             burgerState: this.state.burgerState === BURGER_STATES.EXIT ? this.shouldDisplayArrow () ? BURGER_STATES.ARROW : BURGER_STATES.BURGER : BURGER_STATES.EXIT,
         })
@@ -178,7 +186,7 @@ export default class Menu extends Component {
     render() {
         return (
             <>
-            {this.state.burgerState === BURGER_STATES.EXIT && <MenuOverlay />}
+            {this.state.burgerState === BURGER_STATES.EXIT && <MenuOverlay onClose={this.toggleCollapsed.bind(this)} />}
             <Burger isProject={this.props.isProject} onClick={this.toggleCollapsed.bind(this)} burgerState={this.state.burgerState}>
                 <Line collapsed={this.state.collapsed} top burgerState={this.state.burgerState} bgColor={this.state.LineColor}></Line>
                 <Line collapsed={this.state.collapsed} bottom burgerState={this.state.burgerState} bgColor={this.state.LineColor}></Line>

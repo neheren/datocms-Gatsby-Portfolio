@@ -3,35 +3,36 @@ import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
 const Root = styled.div`
-    position: relative;
-    width: 100%;
-    border-color: black;
-    outline: 1px solid black;
-    outline-offset: 0;
-    background-color: white;
-    z-index: 1500;
-    @keyframes moveOut {
-        0% {
-            transform: perspective(1000px) rotateX(0deg) rotateY(0) scale(1);; 
-        }
-        100% {
-            transform: perspective(1000px) rotateX(50deg) rotateY(0) scale(0.90);
-        }
+  position: relative;
+  width: 100%;
+  outline: 1px solid #565656;
+  outline-offset: 0;
+  background-color: white;
+  z-index: 1500;
+  @keyframes moveOut {
+    0% {
+      transform: perspective(1000px) rotateX(0deg) rotateY(0) scale(1);;
     }
+    100% {
+      transform: perspective(1000px) rotateX(50deg) rotateY(0) scale(0.90);
+    }
+  }
+
+  :after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
+
+  ${props => props.db && css`
+    grid-column: auto / span 2;
+
     :after {
-        content: "";
-        display: block;
-        padding-bottom: 100%;
+      padding-bottom: 50%;
     }
+  `}
 
-    ${props => props.db && css`
-        grid-column: auto / span 2;
-        :after {
-            padding-bottom: 50%;
-        }
-    `}
-
-    ${props => props.projectOpened && css`
+  ${props => props.projectOpened && css`
         will-change: transform;
         transform-style: preserve-3d; 
         /* transition: all 1s cubic-bezier(0.19, 1, 0.22, 1); */

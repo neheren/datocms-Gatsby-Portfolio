@@ -9,7 +9,7 @@ function CasesPage({data}) {
 
     console.log(data)
     return	<ThemeProvider theme={theme}>
-        <Menu/>
+        <Menu isProject={true}/>
         {/*<HelmetDatoCms seo={data.seoMetaTags} />*/}
         <AllCases data={data} />
     </ThemeProvider>
