@@ -4,12 +4,15 @@ import theme from '../styles/theme'
 import {ThemeProvider} from 'styled-components'
 import AllCases from '../components/Cases/AllCases/AllCases'
 import {graphql} from 'gatsby'
+import {AllCasesHeader} from '../components/Cases/AllCases/AllCasesHeader'
+
 
 function CasesPage({data}) {
 
     console.log(data)
     return	<ThemeProvider theme={theme}>
         <Menu isProject={true}/>
+        <AllCasesHeader/>
         {/*<HelmetDatoCms seo={data.seoMetaTags} />*/}
         <AllCases data={data} />
     </ThemeProvider>

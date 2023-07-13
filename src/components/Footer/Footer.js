@@ -51,11 +51,10 @@ const B = styled(Brick)`
         `}
     }
 `
-const HeaderSection = <div>
-	<p>
-		Yeess
 
-	</p>
+
+const HeaderSection = <div>
+
 </div>
 
 
@@ -71,7 +70,7 @@ export const Footer = () => {
 		// <B lg {...p} />,    <B md {...p} />,                        <B sm b {...p} />,  <B md b {...p} />,  <B sm b {...p} />,<B sm {...p} />,<B sm {...p} />,      <B md {...p} />,    <B lg b {...p} />,
 		<B lg {...p} />,    <B md {...p} />,    <B sm  b {...p} />,    <B sm b {...p} />,    <B b {...p} />,       <B b {...p} />,    <B sm {...p} />, <B b sm {...p} />,      <B b md {...p} />,   <B lg {...p} b />,
 		<B lg {...p} />,    <B md {...p} />,    <B sm {...p} />,    <B sm {...p} />,    <B b {...p} />,       <B {...p} />,    <B sm {...p} />, <B sm {...p} />,      <B md b {...p} />,   <B lg {...p} />,
-		<B lg {...p} />,    <B {...p} db title={'the end'}>{HeaderSection}</B>,   <B sm {...p} />,    <B {...p} sm />,       <B {...p} md/>,    <B sm {...p} />, <B sm {...p} />,      <B md {...p} d />,   <B lg {...p} />,
+		<B lg {...p} />,    <B {...p} db title={'links'}>{HeaderSection}</B>,   <B sm {...p} />,    <B {...p} sm />,       <B {...p} md/>,    <B sm {...p} />, <B sm {...p} />,      <B md {...p} d />,   <B lg {...p} />,
 	]
 
 	return (

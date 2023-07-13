@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import AniLink from 'gatsby-plugin-transition-link/AniLink'
 
 const Root = styled.div`
     height: 100%;
@@ -13,7 +14,7 @@ const Root = styled.div`
 const LinkWrapper = styled.div`
     max-width: 100%;
 `
-const LinkItem = styled.a`
+const LinkItem = styled(AniLink)`
     text-decoration: none;
     color: black;
     font-weight: ${props => props.first ? 'bold' : 'normal'};
@@ -30,9 +31,9 @@ function Links() {
 	return (
 		<Root>
 			<LinkWrapper>
-				<LinkItem href="/" first>schlüter</LinkItem>
-				<LinkItem href="/cases">cases</LinkItem>
-				<LinkItem href="/">expirience</LinkItem>
+				<LinkItem to="/"  first>schlüter</LinkItem>
+				<LinkItem to="/cases" swipe direction="left" duration={0.4} >cases</LinkItem>
+				<LinkItem to="/">expirience</LinkItem>
 			</LinkWrapper>
 		</Root>
 	)

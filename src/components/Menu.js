@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components'
 import Link from 'gatsby-plugin-transition-link';
 import MenuOverlay from './MenuOverlay';
 import { window } from 'global'
+import AniLink from 'gatsby-plugin-transition-link/AniLink'
 
 const BURGER_STATES = {
     ARROW: 'ARROW',

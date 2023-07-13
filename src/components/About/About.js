@@ -76,6 +76,7 @@ export default (props) => {
     return (
         <GradiantBGWrapper>
             <GradiantBG>
+                <a id={"about"}/>
                 <Root>
                     <Container>
                         <Content>

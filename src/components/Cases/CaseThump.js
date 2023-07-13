@@ -5,6 +5,7 @@ import HoverTransformer from '../HoverTransformer'
 import arrow from '../../graphics/arrow-white.svg'
 import AniLink from 'gatsby-plugin-transition-link/AniLink'
 import slytLogo from '../../graphics/slytBlack.svg'
+import Brick from './Brick'
 
 const Root = styled.div`
     position: relative;
@@ -119,6 +120,11 @@ const CaseThump = (props) => {
 			title: 'see <b>all cases</b>'
 		}
 	} : props.getProject()
+
+	if(!project.case) {
+		return <Brick {...props}/>
+	}
+
 	return (
 		<HoverTransformerWrapper className={props.className} >
 			<Arrow no={props.no} src={arrow} big={props.big} />

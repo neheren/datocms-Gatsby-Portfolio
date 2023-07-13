@@ -4,6 +4,8 @@ import styled from 'styled-components'
 import HoverTransformer from './HoverTransformer'
 import slyt from '../graphics/slyt.svg'
 import PropTypes from 'prop-types'
+import AniLink from 'gatsby-plugin-transition-link/AniLink'
+import SlytterAniLink from './Shared/SlytterAniLink'
 
 const Root = styled.div`
     z-index: 2999;
@@ -79,21 +81,31 @@ function MenuOverlay(props) {
 		onClose,
 	} = props
 
+
+
 	return (
 		<Root onClick={onClose}>
 			<MenuWrapper >
 				<HoverTransformer>
 					<Logo src={slyt}></Logo>
 				</HoverTransformer>
-				<HoverTransformer>
-					<MenuLines i={0}>schlüter</MenuLines>
-				</HoverTransformer>
-				<HoverTransformer>
-					<MenuLines i={1}>all cases</MenuLines>
-				</HoverTransformer>
-				<HoverTransformer>
-					<MenuLines i={2}>about</MenuLines>
-				</HoverTransformer>
+				<SlytterAniLink to="/" onClick={onClose}>
+					<HoverTransformer>
+						<MenuLines i={0}>schlüter</MenuLines>
+					</HoverTransformer>
+				</SlytterAniLink>
+
+				<SlytterAniLink to="/cases" onClick={onClose}>
+					<HoverTransformer>
+						<MenuLines i={1}>all cases</MenuLines>
+					</HoverTransformer>
+				</SlytterAniLink>
+				<SlytterAniLink to={window.location.origin + '#about'} onClick={onClose}>
+					<HoverTransformer>
+						<MenuLines i={2}>about</MenuLines>
+					</HoverTransformer>
+				</SlytterAniLink>
+
 				<HoverTransformer>
 					<MenuLines i={3}>expirience</MenuLines>
 				</HoverTransformer>
