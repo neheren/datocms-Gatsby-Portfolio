@@ -17,6 +17,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import ReactMarkdown from 'react-markdown'
+import {usePreLoader} from '../hooks/usePreloader'
 
 
 
@@ -111,8 +112,12 @@ const Work = ({ data }) => {
 
 	))
 
+	const {didPreload} = usePreLoader(data.datoCmsWork.gallery.map(({ fluid }) => ({
+		url: fluid.src,
+		type: 'image',
+	})))
 
-	console.log(data.datoCmsWork.description)
+	console.log(didPreload)
 
 	return (
 		<ThemeProvider theme={theme}>
@@ -134,14 +139,13 @@ const Work = ({ data }) => {
 						})
 					}
 					{data.datoCmsWork.excerpt && <Desc>{data.datoCmsWork.excerpt}</Desc>}
-					{items.length !== 0 && <div style={{borderRadius: '10px', overflow: 'hidden'}}>
+					{didPreload && items.length !== 0 && <div style={{borderRadius: '10px', overflow: 'hidden'}}>
 						<AliceCarousel
-							ssrSilentMode={true}
 							mouseTracking
 							items={items}
 							autoPlay
 							autoPlayInterval={2000}
-							responsive={responsive}
+							// responsive={responsive}
 							autoWidth
 							infinite
 							renderDotsItem={(dot) => {
