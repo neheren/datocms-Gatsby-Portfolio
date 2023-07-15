@@ -34,6 +34,7 @@ const FallbackRoot = styled.div`
 `
 
 const Video = styled.div`
+  	background-color: black;
     background-size: cover;
     background-position: center;
     display: flex;

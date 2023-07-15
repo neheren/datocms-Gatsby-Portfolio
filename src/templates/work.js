@@ -117,22 +117,19 @@ const Work = ({ data }) => {
 		type: 'image',
 	})))
 
-	console.log(didPreload)
 
 	return (
 		<ThemeProvider theme={theme}>
 			<Front
 				isProject
 				videoLink={data.datoCmsWork.video ? data.datoCmsWork.video.url : ''}
-			    caseName={data.datoCmsWork.title}
+				caseName={data.datoCmsWork.title}
 			/>
 			<HelmetDatoCms seo={data.datoCmsWork.seoMetaTagsseoMetaTags}/>
 			<Doc>
 				<Menu isProject></Menu>
 				<Container>
-					<Header>
-						{data.datoCmsWork.title}
-					</Header>
+					<Header>{data.datoCmsWork.title}</Header>
 					{
 						data.datoCmsWork.tags.map((tag, i) => {
 							return <TagName key={i}>{tag.tagLine}</TagName>
