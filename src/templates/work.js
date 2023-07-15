@@ -10,6 +10,14 @@ import Container from '../components/Shared/Container'
 import rectArrow from '../graphics/rect-arrow.svg'
 import TagName from './Work/Tag'
 import Menu from '../components/Menu'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import AliceCarousel from 'react-alice-carousel'
+import 'react-alice-carousel/lib/alice-carousel.css';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { Pagination } from 'swiper/modules';
+import ReactMarkdown from 'react-markdown'
+
 
 
 
@@ -17,9 +25,27 @@ const Doc = styled.div`
   background-color: #EFEFEF;
 `
 
+
 const ModifiedSlider = styled(Slider)`
 
 `
+const DotWrapper = styled.div`
+  	padding: 0px 8px 8px;
+	cursor: pointer;
+`
+
+const Dot = styled.div`
+	height: 8px;
+	width: 8px;
+	background-color: #bbb;
+  border-radius: 50%;
+  ${props => props.active && css`
+	background-color: #717171;
+  `}
+  
+`
+
+
 
 const Header = styled.h1`
   margin: ${props => props.theme.spacing(4, 0, 0, 0)};
@@ -30,18 +56,22 @@ const Header = styled.h1`
 `
 
 const Desc = styled.p`
+  font-size: 19px;
+  font-weight: 400;
+  
   margin: ${props => props.theme.spacing(2, 0)};
 `
 
 const Image = styled.img`
-  height: 400px;
-  width: auto !important;
-  max-width: 100%;
+	border-radius: 10px;
+	overflow: hidden;
+  height: 500px;
+
 `
 
-const ImageWrapper = styled.div`
+const ImageWrapper = styled.span`
+  height: 500px;
   padding-right: ${props => props.theme.spacing(2)};
-
 `
 
 const Arrow = styled.img`
@@ -67,49 +97,75 @@ const SliderWrapped = styled(Slider)`
 `
 
 
-export default ({ data }) => (
-	<ThemeProvider theme={theme}>
-		<Front isProject videoLink={data.datoCmsWork.video ? data.datoCmsWork.video.url : ''} caseName={data.datoCmsWork.title} />
-		<HelmetDatoCms seo={data.datoCmsWork.seoMetaTagsseoMetaTags} />
-		<Doc>
-			<Menu isProject></Menu>
-			<Container>
-				<Header>
-					{data.datoCmsWork.title}
-				</Header>
-				{
-					data.datoCmsWork.tags.map((tag, i) => {
-						return <TagName key={i}>{tag.tagLine}</TagName>
-					})
-				}
-				<Desc>{data.datoCmsWork.excerpt}</Desc>
-				<SliderWrapped
-					style={{height: '400px'}}
-					variableWidth
-					// infinite={true}
-					slidesToShow={2}
-					nextArrow={<Arrow src={rectArrow} />} prevArrow={<Arrow src={rectArrow} reverse/>}>
-					{data.datoCmsWork.gallery.map(({ fluid }) => (
-						<ImageWrapper>
-							<Image alt={data.datoCmsWork.title} key={fluid.src} src={fluid.src}  />
-							smagen
-						</ImageWrapper>
-					))}
-				</SliderWrapped>
-				<div
-					className="sheet__body"
-					dangerouslySetInnerHTML={{
-						__html: data.datoCmsWork.description,
-					}}
-				/>
-				{/* <div className="sheet__gallery">
+const responsive = {
+	0: { items: 1 },
+	1024: { items: 2 },
+};
+
+
+const Work = ({ data }) => {
+	const items = data.datoCmsWork.gallery.map(({ fluid }) => (
+		<ImageWrapper>
+			<Image alt={data.datoCmsWork.title} key={fluid.src} src={fluid.src} draggable="false"  />
+		</ImageWrapper>
+
+	))
+
+
+	console.log(data.datoCmsWork.description)
+
+	return (
+		<ThemeProvider theme={theme}>
+			<Front
+				isProject
+				videoLink={data.datoCmsWork.video ? data.datoCmsWork.video.url : ''}
+			    caseName={data.datoCmsWork.title}
+			/>
+			<HelmetDatoCms seo={data.datoCmsWork.seoMetaTagsseoMetaTags}/>
+			<Doc>
+				<Menu isProject></Menu>
+				<Container>
+					<Header>
+						{data.datoCmsWork.title}
+					</Header>
+					{
+						data.datoCmsWork.tags.map((tag, i) => {
+							return <TagName key={i}>{tag.tagLine}</TagName>
+						})
+					}
+					{data.datoCmsWork.excerpt && <Desc>{data.datoCmsWork.excerpt}</Desc>}
+					{items.length !== 0 && <div style={{borderRadius: '10px', overflow: 'hidden'}}>
+						<AliceCarousel
+							ssrSilentMode={true}
+							mouseTracking
+							items={items}
+							autoPlay
+							autoPlayInterval={2000}
+							responsive={responsive}
+							autoWidth
+							infinite
+							renderDotsItem={(dot) => {
+								return <DotWrapper>
+									<Dot active={dot.isActive}/>
+								</DotWrapper>
+							}}
+							disableButtonsControls
+							controlsStrategy="alternate"
+						/>
+					</div>}
+
+					<ReactMarkdown className="sheet__body">
+						{data.datoCmsWork.description}
+					</ReactMarkdown>
+
+					{/* <div className="sheet__gallery">
           <Img fluid={data.datoCmsWork.coverImage.fluid} />
         </div> */}
-			</Container>
-		</Doc>
-	</ThemeProvider>
-)
-
+				</Container>
+			</Doc>
+		</ThemeProvider>
+	)
+}
 export const query = graphql`
   query WorkQuery($slug: String!) {
     datoCmsWork(slug: { eq: $slug }) {
@@ -143,3 +199,6 @@ export const query = graphql`
     }
   }
 `
+
+
+export default Work

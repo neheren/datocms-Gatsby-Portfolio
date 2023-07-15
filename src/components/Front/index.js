@@ -21,6 +21,18 @@ const Root = styled.div`
 	}
 `
 
+const FallbackRoot = styled.div`
+  display: grid;
+    background: #EFEFEF;
+    grid-template-columns: ${props => props.theme.spacing(12)} auto ${props => props.theme.spacing(0)};
+    grid-template-rows: ${props => props.theme.spacing(12)} auto ${props => props.theme.spacing(0)};
+    position: relative;
+    @media ${props => props.theme.media.md} {
+	    grid-template-columns: ${props => props.theme.spacing(8)} auto ${props => props.theme.spacing(0)};
+	    grid-template-rows: ${props => props.theme.spacing(8)} auto ${props => props.theme.spacing(0)};
+	}
+`
+
 const Video = styled.div`
     background-size: cover;
     background-position: center;
@@ -97,8 +109,17 @@ const scrollDown = () => {
 	})
 }
 
-const front = (props) => {
+const Front = (props) => {
 	const { isProject } = props || false
+
+	if(!props.videoLink) {
+		return <FallbackRoot>
+			<MenuWrapper />
+			{isProject ? <ProjectLinks caseName={props.caseName} /> : < Links/>}
+
+		</FallbackRoot>
+	}
+
 	return (
 		<Root>
 			<MenuWrapper />
@@ -115,10 +136,10 @@ const front = (props) => {
 	)
 }
 
-front.propTypes = {
+Front.propTypes = {
 	caseName: PropTypes.string,
 	videoLink: PropTypes.string,
 	isProject: PropTypes.bool,
 }
 
-export default front
+export default Front
