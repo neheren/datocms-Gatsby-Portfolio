@@ -39,25 +39,25 @@ module.exports = {
 				background_color: '#ffffff',
 				theme_color: '#ffffff',
 				display: 'minimal-ui',
-				icon: 'favicon-32x32.png', // This path is relative to the root of the site.
+				icon: 'src/favicons/favicon-32x32.png', // This path is relative to the root of the site.
 				icons: [
 					{
-						src: 'favicon-16x16.png',
+						src: 'src/favicons/favicon-16x16.png',
 						sizes: '16x16',
 						type: 'image/png',
 					},
 					{
-						src: 'favicon-32x32.png',
+						src: 'src/favicons/favicon-32x32.png',
 						sizes: '32x32',
 						type: 'image/png',
 					},
 					{
-						src: 'apple-touch-icon.png',
+						src: 'src/favicons/apple-touch-icon.png',
 						sizes: '180x180',
 						type: 'image/png',
 					},
 					{
-						src: 'safari-pinned-tab.svg',
+						src: 'src/favicons/safari-pinned-tab.svg',
 						type: 'image/svg+xml',
 						purpose: 'maskable',
 					},
