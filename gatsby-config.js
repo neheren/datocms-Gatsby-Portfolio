@@ -59,6 +59,7 @@ module.exports = {
 					{
 						src: 'src/favicons/safari-pinned-tab.svg',
 						type: 'image/svg+xml',
+						sizes: '32x32',
 						purpose: 'maskable',
 					},
 				],
