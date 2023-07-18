@@ -173,6 +173,7 @@ export default class Menu extends Component {
     toggleCollapsed (){
         if(window.pageYOffset < 8) {
             if(this.props.isProject) {
+
                 window.history.back();
             }
             // navigate back with window.history

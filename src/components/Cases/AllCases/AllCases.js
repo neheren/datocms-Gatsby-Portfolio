@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components'
 import { graphql, StaticQuery  } from 'gatsby'
 import CaseThump from '../CaseThump'
 import Brick from '../Brick'
+import Footer from '../../Footer/Footer'
 
 
 const B = styled(Brick)`
@@ -39,10 +40,9 @@ const A = styled(CaseThump)`
 `
 
 const Root = styled.div`
-    background-color: rgba(1, 0, 0, 0.5);
     overflow:hidden;
-    background: #EFEFEF;
     padding-top: 1px;
+    padding-bottom: 1px;
     display: grid;
     grid-template-columns: repeat(10, 1fr);
     @media ${props => props.theme.media.lg} {
@@ -109,12 +109,14 @@ class AllCases extends Component {
 		return (
 			<>
 				<Root>
+
 					{
 						tiles.map((tile, i) => {
 							return <tile.type {...tile.props} key={i}/>
 						})
 					}
 				</Root>
+				<Footer enableBg={false} enableBorder={false} />
 			</>
 		)
 	}

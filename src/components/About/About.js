@@ -4,6 +4,8 @@ import styled from 'styled-components'
 import { Fade } from 'react-reveal'
 import Container from '../Shared/Container'
 import Img from 'gatsby-image'
+import ReactMarkdown from 'react-markdown'
+import Markdown from '../Shared/Markdown'
 
 const Root = styled.div`
     padding: ${props => props.theme.spacing(16, 0)};
@@ -72,31 +74,31 @@ const Header = styled.h2`
 const Right = styled.div``
 
 export default (props) => {
-    console.log({bio: props.data.bio})
-    return (
-        <GradiantBGWrapper>
-            <GradiantBG>
-                <a id={"about"}/>
-                <Root>
-                    <Container>
-                        <Content>
-                            <Image fluid={props.data.photo.fluid}/>
-                            <Right>
+	return (
+		<GradiantBGWrapper>
+			<GradiantBG>
+				<a id={'about'}/>
+				<Root>
+					<Container>
+						<Content>
+							<Image fluid={props.data.photo.fluid}/>
+							<Right>
 								<Header>
-                                    <Fade bottom>
-                                        {props.data.title}
-                                    </Fade>
-                                </Header>
-                                <Fade bottom>
-                                    <Desc dangerouslySetInnerHTML={{__html: props.data.bio}}>
-                                    </Desc>
-                                </Fade>
-                            </Right>
-                        </Content>
-                    </Container>
-                </Root>
-            </GradiantBG>
-        </GradiantBGWrapper>
-    )
+									<Fade bottom>
+										{props.data.title}
+									</Fade>
+								</Header>
+								<Fade bottom>
+									<Desc >
+										<Markdown>{props.data.bio}</Markdown>
+									</Desc>
+								</Fade>
+							</Right>
+						</Content>
+					</Container>
+				</Root>
+			</GradiantBG>
+		</GradiantBGWrapper>
+	)
 }
 

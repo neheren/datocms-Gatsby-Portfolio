@@ -18,6 +18,8 @@ import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import ReactMarkdown from 'react-markdown'
 import {usePreLoader} from '../hooks/usePreloader'
+import Footer from '../components/Footer/Footer'
+import Markdown from '../components/Shared/Markdown'
 
 
 
@@ -155,15 +157,19 @@ const Work = ({ data }) => {
 						/>
 					</div>}
 
-					<ReactMarkdown className="sheet__body">
+					<Markdown columnCount={2}>
 						{data.datoCmsWork.description}
-					</ReactMarkdown>
+					</Markdown>
 
 					{/* <div className="sheet__gallery">
           <Img fluid={data.datoCmsWork.coverImage.fluid} />
         </div> */}
 				</Container>
 			</Doc>
+			<Footer
+				enableBg={false}
+				enableBorder
+			/>
 		</ThemeProvider>
 	)
 }

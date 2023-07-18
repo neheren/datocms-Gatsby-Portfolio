@@ -5,17 +5,17 @@ import {ThemeProvider} from 'styled-components'
 import AllCases from '../components/Cases/AllCases/AllCases'
 import {graphql} from 'gatsby'
 import {AllCasesHeader} from '../components/Cases/AllCases/AllCasesHeader'
+import HelmetWrapper from '../components/layout'
 
 
 function CasesPage({data}) {
-
-    console.log(data)
-    return	<ThemeProvider theme={theme}>
-        <Menu isProject={true}/>
-        <AllCasesHeader/>
-        {/*<HelmetDatoCms seo={data.seoMetaTags} />*/}
-        <AllCases data={data} />
-    </ThemeProvider>
+    return <ThemeProvider theme={theme}>
+		<HelmetWrapper>
+			<Menu isProject={true}/>
+			<AllCasesHeader/>
+			<AllCases data={data} />
+		</HelmetWrapper>
+	</ThemeProvider>
 }
 
 export default CasesPage

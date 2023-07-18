@@ -7,21 +7,26 @@ import Cases from '../components/Cases'
 import Menu from '../components/Menu'
 import About from '../components/About/About'
 import {HelmetDatoCms} from 'gatsby-source-datocms'
-import {Footer} from '../components/Footer/Footer'
+import {Tiles} from '../components/Tiles'
 
 import '../styles/index.sass'
+import Footer from '../components/Footer/Footer'
+import HelmetWrapper from '../components/layout'
 
 
 const IndexPage = ({data}) => {
+
+	console.log('SEO', data.seoMetaTags)
 	return	<ThemeProvider theme={theme}>
-		<>
+		<HelmetWrapper>
 			<Menu/>
 			<HelmetDatoCms seo={data.seoMetaTags} />
-			<Front videoLink={'http://kirstineogsigurd.dk/portfoliovideo.mp4'} isProject={false}/>
+			<Front videoLink={'https://kirstineogsigurd.dk/portfoliovideo.mp4'} isProject={false}/>
 			<Cases />
 			<About data={data.about}/>
+			<Tiles/>
 			<Footer/>
-		</>
+		</HelmetWrapper>
 	</ThemeProvider>
 }
 

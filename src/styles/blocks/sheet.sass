@@ -9,7 +9,6 @@
   font-size: 30px
   margin-bottom: 30px
   font-weight: bold
-  color: $dark-body-color
   line-height: 1
 
 .sheet__lead
@@ -21,13 +20,11 @@
   margin-bottom: 30px
 
 .sheet__body
-  color: black
   font-size: 14px
   margin-bottom: 30px
 
   h1, h2, h3, h4, h5, h6, p, blockquote, pre, ul, ol
-    margin-bottom: 20px
-    column-count: 2
+    margin-bottom: 12px
 
     &:last-child
       margin-bottom: 0
@@ -37,7 +34,6 @@
     column-count: 1
 
     margin-top: 40px
-    color: $dark-body-color
 
   h1
     font-size: 3em
@@ -75,7 +71,17 @@
     font-size: 20px
 
   .sheet__body
-    font-size: 16px
+    p
+      font-size: 16px
 
     blockquote
       padding-left: 40px
+
+
+@media screen and (max-width: 900px)
+
+  .sheet__body
+    p
+      column-count: 1 !important
+      font-size: 16px
+
