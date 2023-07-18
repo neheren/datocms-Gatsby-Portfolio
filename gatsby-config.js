@@ -39,7 +39,7 @@ module.exports = {
 				background_color: '#ffffff',
 				theme_color: '#ffffff',
 				display: 'minimal-ui',
-				icon: 'public/favicon-32x32.png', // This path is relative to the root of the site.
+				icon: 'favicon-32x32.png', // This path is relative to the root of the site.
 				icons: [
 					{
 						src: 'favicon-16x16.png',
