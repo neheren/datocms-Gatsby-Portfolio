@@ -8,12 +8,12 @@ const Root = styled.div`
     align-items:center;
     grid-column: 2 / 3;
     grid-row: 1 / 2;
-
 `
 
 const LinkWrapper = styled.div`
     max-width: 100%;
 `
+
 const LinkItem = styled(AniLink)`
     text-decoration: none;
     color: black;
@@ -33,14 +33,10 @@ function Links() {
 			<LinkWrapper>
 				<LinkItem to="/"  first>schlüter</LinkItem>
 				<LinkItem to="/cases" swipe direction="left" duration={0.4} >cases</LinkItem>
-				<LinkItem to="/">expirience</LinkItem>
+				<LinkItem to={window.location.origin + '#about'}>about</LinkItem>
 			</LinkWrapper>
 		</Root>
 	)
-}
-
-Links.propTypes = {
-
 }
 
 export default Links

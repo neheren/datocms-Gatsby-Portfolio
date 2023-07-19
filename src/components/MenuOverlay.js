@@ -94,7 +94,6 @@ function MenuOverlay(props) {
 						<MenuLines i={0}>schlüter</MenuLines>
 					</HoverTransformer>
 				</SlytterAniLink>
-
 				<SlytterAniLink to="/cases" onClick={onClose}>
 					<HoverTransformer>
 						<MenuLines i={1}>all cases</MenuLines>
@@ -106,9 +105,9 @@ function MenuOverlay(props) {
 					</HoverTransformer>
 				</SlytterAniLink>
 
-				<HoverTransformer>
-					<MenuLines i={3}>expirience</MenuLines>
-				</HoverTransformer>
+				{/*<HoverTransformer>*/}
+				{/*	<MenuLines i={3}>expirience</MenuLines>*/}
+				{/*</HoverTransformer>*/}
 			</MenuWrapper>
 		</Root>
 	)

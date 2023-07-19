@@ -12,7 +12,7 @@ const SlytterAniLink = (props) => {
 	const {children, onClick} = props
 
 	return (
-		<AniLink
+		<AniLink style={{textDecoration: 'none'}}
 			onClick={onClick}
 			cover
 			bg={`
