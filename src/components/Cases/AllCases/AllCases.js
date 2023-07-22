@@ -71,7 +71,9 @@ class AllCases extends Component {
 	}
 
 	render() {
-		const workArray = this.props.data.allDatoCmsWork.edges.map((workNode) => {
+		const workArray = this.props.data.allDatoCmsWork.edges
+			.filter(workNode => !!workNode.node.shown)
+			.map((workNode) => {
 			const {title, slug, coverImage} = workNode.node
 			return {title, slug, coverImage}
 		})

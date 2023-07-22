@@ -51,6 +51,7 @@ export const query = graphql`
           node {
             id
             title
+            shown
             slug
             excerpt
             coverImage {

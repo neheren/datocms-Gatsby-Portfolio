@@ -7,7 +7,7 @@ import Front from '../components/Front'
 import styled, { ThemeProvider, css } from 'styled-components'
 import theme from '../styles/theme'
 import Container from '../components/Shared/Container'
-import rectArrow from '../graphics/rect-arrow.svg'
+import rectArrow from '../graphics/arrowRound.svg'
 import TagName from './Work/Tag'
 import Menu from '../components/Menu'
 import { Swiper, SwiperSlide } from 'swiper/react';

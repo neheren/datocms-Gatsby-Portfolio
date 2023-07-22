@@ -3,7 +3,7 @@
 <svg version="1.1" id="Lag_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
 <g id="XMLID_4_">
-	<path id="XMLID_5_" d="M25,0C11.2,0,0,11.2,0,25s11.2,25,25,25c13.8,0,25-11.2,25-25S38.8,0,25,0z M25.4,40.9l-2.5-2.4L34.5,27H9
+	<path fill="white" id="XMLID_5_" d="M25,0C11.2,0,0,11.2,0,25s11.2,25,25,25c13.8,0,25-11.2,25-25S38.8,0,25,0z M25.4,40.9l-2.5-2.4L34.5,27H9
 		v-4h25.5L22.9,11.5l2.5-2.4L41.2,25L25.4,40.9z"/>
 </g>
 </svg>

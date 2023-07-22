@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import HoverTransformer from '../HoverTransformer'
 import arrow from '../../graphics/arrow-white.svg'
+import arrowRound from '../../graphics/arrowRound.svg'
 import AniLink from 'gatsby-plugin-transition-link/AniLink'
 import slytLogo from '../../graphics/slytBlack.svg'
 import Brick from './Brick'
@@ -124,6 +125,8 @@ const CaseThump = (props) => {
 	if(!project.case) {
 		return <Brick {...props}/>
 	}
+
+	// const largeArrow = (props.no || props.big)
 
 	return (
 		<HoverTransformerWrapper className={props.className} >

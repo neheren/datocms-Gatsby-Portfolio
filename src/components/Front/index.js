@@ -1,7 +1,8 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import slytLogo from '../../graphics/slyt.svg'
+import nikoLogo from '../../graphics/nikolaj.svg'
 import arrowDown from '../../graphics/downArrow.svg'
 import Links from './Links'
 import Copyright from '../Copyright'
@@ -113,6 +114,17 @@ const scrollDown = () => {
 const Front = (props) => {
 	const { isProject } = props || false
 
+	const [firstNameShown, setFirstNameShown] = useState(0)
+	useEffect(() => {
+		const timer = setInterval(() => {
+			setFirstNameShown((value) => (value + 1) % 4)
+		}, 300)
+		return () => clearInterval(timer)
+
+	}, [])
+
+
+
 	if(!props.videoLink) {
 		return <FallbackRoot>
 			<MenuWrapper />
@@ -130,7 +142,7 @@ const Front = (props) => {
 			{isProject ? <ProjectLinks caseName={props.caseName} /> : < Links/>}
 			<Video>
 				<InlineVideo videoLink={props.videoLink} isProject={isProject} style={{transform: 'translateZ(150px) translateX(-10%)'}} />
-				{!isProject && <Logo src={slytLogo} />}
+				{!isProject && <Logo src={firstNameShown === 0 ? nikoLogo : slytLogo} />}
 			</Video>
 			<ArrowDown src={arrowDown} onClick={scrollDown.bind(this)}/>
 		</Root>

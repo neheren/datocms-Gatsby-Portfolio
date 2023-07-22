@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import Brick from './Brick'
 import CaseThump from './CaseThump'
-import { graphql, StaticQuery  } from 'gatsby'
+import {graphql, PageProps, StaticQuery} from 'gatsby'
 
 
 const B = styled(Brick)`
@@ -56,7 +56,40 @@ const Root = styled.div`
     }
 `
 
-class OuterWork extends Component {
+
+interface IWorkNode {
+    node: {
+        id: string
+        shown: boolean
+        title: string
+        slug: string
+        excerpt: string
+        coverImage: {
+            fluid: {
+                aspectRatio: number
+                src: string
+                srcSet: string
+                sizes: string
+                base64?: string
+                tracedSVG?: string
+                srcWebp?: string
+                srcSetWebp?: string
+            }
+        }
+    }
+}
+
+
+interface IProps extends PageProps {
+    data: {
+        allDatoCmsWork: {
+            edges: IWorkNode[]
+        }
+    }
+}
+
+
+class OuterWork extends Component<IProps> {
     static propTypes = {
         work: PropTypes.any,
     }
@@ -71,7 +104,9 @@ class OuterWork extends Component {
     }
 
     render() {
-        const workArray = this.props.data.allDatoCmsWork.edges.map((workNode) => {
+        const workArray = this.props.data.allDatoCmsWork.edges
+          .filter(workNode => !!workNode.node.shown)
+          .map((workNode) => {
             const {title, slug, coverImage} = workNode.node
             return {title, slug, coverImage}
         })
@@ -124,6 +159,7 @@ export default () => (
               edges {
                 node {
                   id
+                  shown
                   title
                   slug
                   excerpt
