@@ -32,6 +32,29 @@ const Root = styled.div`
 	   }
 	`}
 
+        transition: 1.5s cubic-bezier(0, 0.59, 0.08, 1);
+
+    @keyframes rotateIn {
+        from { 
+            /* opacity: 0; */
+            transform: rotateY(90deg) rotateX(45deg) scale(0.8) translateZ(100px);
+        }
+        to { 
+            opacity: 1;
+            transform: rotateY(0deg) rotateX(0deg) scale(1) translateZ(0);
+        }
+    }
+    perspective: 1000px;
+
+    ${props => !props.b && css`
+        /* opacity: 0; */
+        transform: rotateY(90deg) rotateX(45deg) scale(0.8) translateZ(100px);
+        animation: rotateIn 1.5s linear forwards;
+        animation-timeline: scroll(root);
+        animation-range: entry 5% cover 30%;
+    `}
+
+
 `
 
 const Content = styled.div`

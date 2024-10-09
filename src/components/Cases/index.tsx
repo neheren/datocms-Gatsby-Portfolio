@@ -1,10 +1,8 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { useState, useRef } from 'react'
 import styled, { css } from 'styled-components'
 import Brick from './Brick'
 import CaseThump from './CaseThump'
-import {graphql, PageProps, StaticQuery} from 'gatsby'
-
+import { graphql, PageProps, StaticQuery } from 'gatsby'
 
 const B = styled(Brick)`
     ${props => props.b && css`
@@ -25,6 +23,31 @@ const B = styled(Brick)`
             display: none;
         `}
     }
+    transition: 1.5s cubic-bezier(0, 0.59, 0.08, 1);
+
+    @keyframes rotateIn {
+         0% { 
+            opacity: 0;
+            transform: rotateY(90deg) rotateX(45deg) scale(0.8) translateZ(200px) translate(100px, -500px);
+        }
+        10% {
+            opacity: 1;
+        }
+        100% { 
+            opacity: 1;
+            transform: rotateY(0deg) rotateX(0deg) scale(1) translateZ(0) translateY(0);
+        }
+    }
+
+    perspective: 1000px;
+
+    ${props => !props.b && css`
+        opacity: 0;
+        transform: rotateY(90deg) rotateX(45deg) scale(0.8) translateZ(200px) translate(100px, -500px);
+        animation: rotateIn 1.5s linear forwards;
+        animation-timeline: scroll(root);
+        animation-range: entry 5% cover 30%;
+    `}
 `
 
 const C = styled(CaseThump)`
@@ -40,7 +63,6 @@ const A = styled(CaseThump)`
 
 const Root = styled.div`
     background: black;
-    overflow:hidden;
     padding-top: 1px;
     display: grid;
     grid-template-columns: repeat(10, 1fr);
@@ -53,8 +75,10 @@ const Root = styled.div`
     @media ${props => props.theme.media.sm} {
         grid-template-columns: repeat(2, 1fr);
     }
+    scroll-timeline-name: --cases-scroll;
+    scroll-timeline-axis: block;
+    perspective: 1000px;
 `
-
 
 interface IWorkNode {
     node: {
@@ -78,7 +102,6 @@ interface IWorkNode {
     }
 }
 
-
 interface IProps extends PageProps {
     data: {
         allDatoCmsWork: {
@@ -87,72 +110,60 @@ interface IProps extends PageProps {
     }
 }
 
+const OuterWork: React.FC<IProps> = ({ data }) => {
+    const [chosenProject, setChosenProject] = useState(-1);
+    const [projectOpened, setProjectOpened] = useState(false);
 
-class OuterWork extends Component<IProps> {
-    static propTypes = {
-        work: PropTypes.any,
-    }
+    const openProject = (index: number) => {
+        setProjectOpened(!projectOpened);
+        setChosenProject(index);
+    };
 
-    state = {
-        chosenProject: -1,
-        projectOpened: false,
-    }
+    const workArray = data.allDatoCmsWork.edges
+        .filter(workNode => !!workNode.node.shown)
+        .map((workNode) => {
+            const { title, slug, coverImage } = workNode.node
+            return { title, slug, coverImage }
+        });
 
-    openProject(index){
-        this.setState({projectOpened: !this.state.projectOpened, chosenProject: index})
-    }
+    let projectIndex = -1;
+    let tileIndex = -1;
 
-    render() {
-        const workArray = this.props.data.allDatoCmsWork.edges
-          .filter(workNode => !!workNode.node.shown)
-          .map((workNode) => {
-            const {title, slug, coverImage} = workNode.node
-            return {title, slug, coverImage}
-        })
+    const p = {
+        openProject: (index: number) => () => openProject(index),
+        getProject: () => {
+            projectIndex++;
+            return { case: workArray[projectIndex], index: projectIndex };
+        },
+        getTileIndex: () => {
+            tileIndex++;
+            return tileIndex;
+        },
+        chosenProject,
+        projectOpened,
+    };
 
-        const {chosenProject, projectOpened} = this.state;
+    const tiles = [
+        <B lg {...p} />,    <B db title={'cases'} {...p} />,                        <B sm b {...p} />,  <B md b {...p} />,  <B sm b {...p} />,<B sm {...p} />,<B sm {...p} />,      <B md {...p} />,    <B lg b {...p} />,
+        <B lg {...p} />,    <B md {...p} />,    <B sm {...p} />,    <B sm {...p} />,    <B {...p} />,       <B {...p} />,    <B sm {...p} />, <B sm {...p} />,      <B md {...p} />,    <B lg {...p} />,
+        <B lg {...p} />,    <B md {...p} />,    <C big {...p} />,                       <C {...p} />,       <C {...p} /> ,   <C {...p} />,    <A{...p} />,         <B md {...p} />,    <B lg {...p} />,
+        <B lg {...p} />,    <B md {...p} />,                                            <C b {...p} />,     <C {...p} />,    <C {...p} />,    <C no {...p} />,         <B md {...p} />,    <B lg {...p} />,
+        <B lg {...p} />,    <B md {...p} />,    <B sm {...p} />,    <B sm {...p} />,    <B sm {...p} />,    <B {...p} />,    <B sm {...p} />, <B sm {...p} />,      <B md {...p} />,    <B lg {...p} />,
+        <B lg {...p} />,    <B md {...p} />,    <B sm {...p} />,    <B sm {...p} />,    <B sm {...p} />,    <B {...p} />,    <B sm {...p} />, <B sm {...p} />,      <B md {...p} />,    <B lg b {...p} />,
+        <B lg b {...p} />,  <B md {...p} />,    <B sm {...p} />,    <B sm {...p} />,    <B sm b {...p} />,  <B {...p} />,    <B sm {...p} />, <B sm b {...p} />,    <B md b {...p} />,  <B lg b {...p} />,
+        <B lg b {...p} />,  <B md b {...p} />,  <B sm  {...p} />,   <B sm b {...p} />,  <B sm b {...p} />,  <B b {...p} />,  <B sm b {...p} />,<B sm b {...p} />,   <B md b {...p} />,  <B lg b {...p} />,
+    ]
 
-        const p = {
-            openProject: (index) => this.openProject.bind(this, index),
-            projectIndex: -1,
-            key: this.projectIndex,
-            getProject: () => {
-                p.projectIndex++
-                return {case: workArray[p.projectIndex], index: p.projectIndex}
-            },
-            tileIndex: -1,
-            getTileIndex: () => {
-                p.tileIndex++
-                return p.tileIndex
-            },
-            chosenProject,
-            projectOpened,
-        }
-
-        const tiles = [
-            <B lg {...p} />,    <B db title={'cases'} {...p} />,                        <B sm b {...p} />,  <B md b {...p} />,  <B sm b {...p} />,<B sm {...p} />,<B sm {...p} />,      <B md {...p} />,    <B lg b {...p} />,
-            <B lg {...p} />,    <B md {...p} />,    <B sm {...p} />,    <B sm {...p} />,    <B {...p} />,       <B {...p} />,    <B sm {...p} />, <B sm {...p} />,      <B md {...p} />,    <B lg {...p} />,
-            <B lg {...p} />,    <B md {...p} />,    <C big {...p} />,                       <C {...p} />,       <C {...p} /> ,   <C {...p} />,    <A{...p} />,         <B md {...p} />,    <B lg {...p} />,
-            <B lg {...p} />,    <B md {...p} />,                                            <C b {...p} />,     <C {...p} />,    <C {...p} />,    <C no {...p} />,         <B md {...p} />,    <B lg {...p} />,
-            <B lg {...p} />,    <B md {...p} />,    <B sm {...p} />,    <B sm {...p} />,    <B sm {...p} />,    <B {...p} />,    <B sm {...p} />, <B sm {...p} />,      <B md {...p} />,    <B lg {...p} />,
-            <B lg {...p} />,    <B md {...p} />,    <B sm {...p} />,    <B sm {...p} />,    <B sm {...p} />,    <B {...p} />,    <B sm {...p} />, <B sm {...p} />,      <B md {...p} />,    <B lg b {...p} />,
-            <B lg b {...p} />,  <B md {...p} />,    <B sm {...p} />,    <B sm {...p} />,    <B sm b {...p} />,  <B {...p} />,    <B sm {...p} />, <B sm b {...p} />,    <B md b {...p} />,  <B lg b {...p} />,
-            <B lg b {...p} />,  <B md b {...p} />,  <B sm  {...p} />,   <B sm b {...p} />,  <B sm b {...p} />,  <B b {...p} />,  <B sm b {...p} />,<B sm b {...p} />,   <B md b {...p} />,  <B lg b {...p} />,
-        ]
-
-        return (
-            <Root>
-                {
-                    tiles.map((tile, i) => <tile.type {...tile.props} key={i}/>)
-                }
-            </Root>
-        )
-    }
-}
+    return (
+        <Root>
+            {tiles.map((tile, i) => <tile.type {...tile.props} key={i} />)}
+        </Root>
+    );
+};
 
 export default () => (
     <StaticQuery
-        query ={graphql`
+        query={graphql`
           query OuterWorkQuery {
             allDatoCmsWork(sort: { fields: [position], order: ASC }) {
               edges {
@@ -172,8 +183,6 @@ export default () => (
             }
           }
         `}
-        render={(data) => {
-            return <OuterWork data={data} />
-        }}
+        render={(data) => <OuterWork data={data} />}
     />
 )

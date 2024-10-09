@@ -20,17 +20,6 @@ const Root = styled.div`
   }
 `
 
-const C = styled(Brick)`
-    ${props => props.big && css`
-        grid-column: auto / span 2;
-        grid-row: auto / span 2;
-    `}
-`
-
-const A = styled(Brick)`
-    content: 'all projects';
-`
-
 const B = styled(Brick)`
     ${props => props.b && css`
         opacity: 0;
@@ -59,18 +48,15 @@ const HeaderSection = <div>
 
 
 export const Tiles = () => {
-
 	const p = {
 		getTileIndex: () => 1,
-
 	}
-
 
 	const tiles = [
 		// <B lg {...p} />,    <B md {...p} />,                        <B sm b {...p} />,  <B md b {...p} />,  <B sm b {...p} />,<B sm {...p} />,<B sm {...p} />,      <B md {...p} />,    <B lg b {...p} />,
 		<B lg {...p} />,    <B md {...p} />,    <B sm  b {...p} />,    <B sm b {...p} />,    <B b {...p} />,       <B b {...p} />,    <B sm {...p} />, <B b sm {...p} />,      <B b md {...p} />,   <B lg {...p} b />,
 		<B lg {...p} />,    <B md {...p} />,    <B sm {...p} />,    <B sm {...p} />,    <B b {...p} />,       <B {...p} />,    <B sm {...p} />, <B sm {...p} />,      <B md b {...p} />,   <B lg {...p} />,
-		<B lg {...p} />,    <B {...p} db title={''}>{HeaderSection}</B>,   <B sm {...p} />,    <B {...p} sm />,       <B {...p} md/>,    <B sm {...p} />, <B sm {...p} />,      <B md {...p} d />,   <B lg {...p} />,
+		<B lg {...p} />,    <B {...p} db>{HeaderSection}</B>,   <B sm {...p} />,    <B {...p} sm />,       <B {...p} md/>,    <B sm {...p} />, <B sm {...p} />,      <B md {...p} d />,   <B lg {...p} />,
 	]
 
 	return (
@@ -81,13 +67,4 @@ export const Tiles = () => {
 		</Root>
 	)
 
-	//
-	// return (
-	// <footer>
-	// 	<Root>
-	// 		<B lg {...p} />, <B db {...p} />, <B sm b {...p} />,  <B md b {...p} />,  <B sm b {...p} />,<B sm {...p} />,<B sm {...p} />,      <B md {...p} />,    <B lg b {...p} />,
-	// 	</Root>
-	//   <p>© {new Date().getFullYear()} Nikolaj Schlüter Nielsen</p>
-	// </footer>
-	// )
 }

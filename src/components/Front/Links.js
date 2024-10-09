@@ -33,7 +33,7 @@ function Links() {
 			<LinkWrapper>
 				<LinkItem to="/" first>schlüter</LinkItem>
 				<LinkItem to="/cases" swipe direction="left" duration={0.4} >cases</LinkItem>
-				<LinkItem to={window.location.origin + '#about'}>about</LinkItem>
+				<LinkItem to="#about">about</LinkItem>
 			</LinkWrapper>
 		</Root>
 	)

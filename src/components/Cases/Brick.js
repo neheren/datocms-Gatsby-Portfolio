@@ -3,15 +3,16 @@ import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
 const Root = styled.div`
+
   position: relative;
   width: 100%;
-  outline: 1px solid #565656;
+  outline: 1px solid #000;
   outline-offset: 0;
   background-color: white;
   z-index: 1500;
   @keyframes moveOut {
     0% {
-      transform: perspective(1000px) rotateX(0deg) rotateY(0) scale(1);;
+      transform: perspective(1000px) rotateX(0deg) rotateY(1) scale(1);;
     }
     100% {
       transform: perspective(1000px) rotateX(50deg) rotateY(0) scale(0.90);
