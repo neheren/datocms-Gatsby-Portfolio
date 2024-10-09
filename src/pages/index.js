@@ -16,11 +16,12 @@ import HelmetWrapper from '../components/layout'
 
 const IndexPage = ({data}) => {
 
-	console.log('SEO', data.seoMetaTags)
+	console.log('SEO', data.home)
 	return	<ThemeProvider theme={theme}>
 		<HelmetWrapper>
+			<h1 style={{display: 'none'}}>Portfolio by Nikolaj Schlüter Nielsen</h1>
 			<Menu/>
-			<HelmetDatoCms seo={data.seoMetaTags} />
+			<HelmetDatoCms seo={data.home.seoMetaTags} />
 			<Front videoLink={'https://kirstineogsigurd.dk/portfoliovideo.mp4'} isProject={false}/>
 			<Cases />
 			<About data={data.about}/>
