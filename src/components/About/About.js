@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import { Fade } from 'react-reveal'
 import Container from '../Shared/Container'
 import Img from 'gatsby-image'
-import ReactMarkdown from 'react-markdown'
 import Markdown from '../Shared/Markdown'
 
 const Root = styled.div`
@@ -12,10 +11,10 @@ const Root = styled.div`
 `
 
 const Content = styled.div`
-    grid-gap: ${props => props.theme.spacing(4)};
-    grid-column: 2 / 3;
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-gap: ${props => props.theme.spacing(6)};
+    grid-template-columns: 2fr 2fr;
+    align-items: center;
     @media ${props => props.theme.media.lg} {
         grid-template-columns: 1fr ;
     }
@@ -61,13 +60,18 @@ const GradiantBGWrapper = styled.div`
 `
 
 const Desc = styled.div`
+    line-height: 1.5;
+
     strong{
         font-weight: bold;
     }
+    // lowercase
+    /* text-transform: lowercase; */
+    font-weight: 400;
 `
 
 const Header = styled.h2`
-    font-size: 30px;
+    font-size: 36px;
     font-weight: bolder;
 `
 
