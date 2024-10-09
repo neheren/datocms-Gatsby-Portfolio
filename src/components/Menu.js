@@ -34,7 +34,7 @@ const Burger = styled.div`
         }
     ` : css`
         * {
-            background-color: black;
+            background-color: ${props => !props.isProject ? 'white' : 'black'};
         }
     `}
     
@@ -152,7 +152,7 @@ export default class Menu extends Component {
     }
 
     state = {
-        LineColor: 'black',
+        LineColor: 'white',
         burgerState: BURGER_STATES.ARROW,
         burgerIndex: 1,
     }
@@ -162,7 +162,7 @@ export default class Menu extends Component {
             burgerState: this.shouldDisplayArrow () ? BURGER_STATES.ARROW : BURGER_STATES.BURGER,
         })
         this.setState({
-            LineColor: (window.pageYOffset > window.innerHeight * 2 || this.state.burgerState === BURGER_STATES.EXIT ? 'white' : 'black')
+            LineColor: (window.pageYOffset > window.innerHeight * 2 || this.state.burgerState === BURGER_STATES.EXIT ? 'white' : 'white')
         })
     }
 

@@ -7,16 +7,12 @@ import Front from '../components/Front'
 import styled, { ThemeProvider, css } from 'styled-components'
 import theme from '../styles/theme'
 import Container from '../components/Shared/Container'
-import rectArrow from '../graphics/arrowRound.svg'
 import TagName from './Work/Tag'
 import Menu from '../components/Menu'
-import { Swiper, SwiperSlide } from 'swiper/react';
 import AliceCarousel from 'react-alice-carousel'
 import 'react-alice-carousel/lib/alice-carousel.css';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { Pagination } from 'swiper/modules';
-import ReactMarkdown from 'react-markdown'
 import {usePreLoader} from '../hooks/usePreloader'
 import Footer from '../components/Footer/Footer'
 import Markdown from '../components/Shared/Markdown'
@@ -28,10 +24,6 @@ const Doc = styled.div`
   background-color: #EFEFEF;
 `
 
-
-const ModifiedSlider = styled(Slider)`
-
-`
 const DotWrapper = styled.div`
   	padding: 0px 8px 8px;
 	cursor: pointer;
@@ -127,7 +119,7 @@ const Work = ({ data }) => {
 				videoLink={data.datoCmsWork.video ? data.datoCmsWork.video.url : ''}
 				caseName={data.datoCmsWork.title}
 			/>
-			<HelmetDatoCms seo={data.datoCmsWork.seoMetaTagsseoMetaTags}/>
+			<HelmetDatoCms seo={data.datoCmsWork.seoMetaTags}/>
 			<Doc>
 				<Menu isProject></Menu>
 				<Container>
@@ -171,8 +163,9 @@ const Work = ({ data }) => {
 				enableBorder
 			/>
 		</ThemeProvider>
-	)
+	)	
 }
+
 export const query = graphql`
   query WorkQuery($slug: String!) {
     datoCmsWork(slug: { eq: $slug }) {

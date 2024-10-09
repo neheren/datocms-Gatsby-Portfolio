@@ -16,7 +16,7 @@ const LinkWrapper = styled.div`
 
 const LinkItem = styled(AniLink)`
     text-decoration: none;
-    color: black;
+    color: white;
     font-weight: ${props => props.first ? 'bold' : 'normal'};
     margin-right: ${props => props.first ? props.theme.spacing(2) : props.theme.spacing(2)};
     @media ${props => props.theme.media.md} {

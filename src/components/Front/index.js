@@ -11,7 +11,7 @@ import ProjectLinks from './ProjectLinks'
 
 const Root = styled.div`
     display: grid;
-    background: #EFEFEF;
+    background: ${props => !props.isProject ? '#000' : '#EFEFEF'};
     grid-template-columns: ${props => props.theme.spacing(12)} auto ${props => props.theme.spacing(12)};
     grid-template-rows: ${props => props.theme.spacing(12)} auto ${props => props.theme.spacing(12)};
     height: 100vh;
@@ -134,7 +134,7 @@ const Front = (props) => {
 	}
 
 	return (
-		<Root>
+		<Root isProject={isProject}>
 			<MenuWrapper />
 			<CopyrightWrapper>
 				{!isProject && <Copyright />}

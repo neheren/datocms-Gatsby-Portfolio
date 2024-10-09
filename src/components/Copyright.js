@@ -9,7 +9,6 @@ const Root = styled.div`
     grid-template-columns: 1fr auto;
     grid-template-rows: 1fr;
     grid-gap: 5px;
-    font-size: 12px;
     color: dimgrey;
 `
 
@@ -17,19 +16,20 @@ const Rotation = styled.div`
 	writing-mode: vertical-lr;
 	transform: rotate(180deg);
 	transform-origin: center;
-  	font-size: 10px;
+  	font-size: 12px;
 `
 
 const Line = styled.div`
-    height: 30px;
+    height: 16px;
     width: 1px;
-    background-color: dimgrey;
+    background-color: white;
     align-self: end;
 `
 
 const Bold = styled.div`
-	color: black;
-    font-weight: bolder;
+	color: #fff;
+	font-size: 14px;
+	font-weight: bolder;
   
 `
 const Copyright = () => {
@@ -37,7 +37,7 @@ const Copyright = () => {
 		<Root>
 			<Rotation>
 				<Bold>
-					nikolaj schlüter nielsen
+					nikolaj schlüter
 				</Bold>
 				designed and created by
 			</Rotation>
