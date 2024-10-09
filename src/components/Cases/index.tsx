@@ -40,7 +40,6 @@ const A = styled(CaseThump)`
 
 const Root = styled.div`
     background: black;
-
     overflow:hidden;
     padding-top: 1px;
     display: grid;
