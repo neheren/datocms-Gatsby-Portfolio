@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
 const Root = styled.div`
-
   position: relative;
   width: 100%;
   outline: 1px solid #000;

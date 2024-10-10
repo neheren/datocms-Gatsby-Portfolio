@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 import { ThemeProvider } from 'styled-components'
 import Front from '../components/Front/index.js'
 import theme from '../styles/theme'
-import Cases from '../components/Cases'
+import OuterCases from '../components/Cases/OuterCases'
 import Menu from '../components/Menu'
 import About from '../components/About/About'
 import {HelmetDatoCms} from 'gatsby-source-datocms'
@@ -23,7 +23,7 @@ const IndexPage = ({data}) => {
 			<Menu/>
 			<HelmetDatoCms seo={data.home.seoMetaTags} />
 			<Front videoLink={'https://kirstineogsigurd.dk/portfoliovideo.mp4'} isProject={false}/>
-			<Cases />
+			<OuterCases />
 			<About data={data.about}/>
 			<Tiles/>
 			<Footer/>

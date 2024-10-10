@@ -52,11 +52,12 @@ const GradiantBG = styled.div`
         grid-template-columns: repeat(2, 1fr);
     }
     width: 100%;
-    background-image: linear-gradient(0deg, #212121 0%, #0c0c0c calc(100% - 100vw / 10), rgba(1, 1, 1, 0));
+    background: #000;
+    /* background-image: linear-gradient(0deg, #212121 0%, #0c0c0c calc(100% - 100vw / 10), rgba(1, 1, 1, 0)); */
 `
 
 const GradiantBGWrapper = styled.div`
-    background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%, rgba(255,255,255,1) 70%);
+    /* background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%, rgba(255,255,255,1) 70%); */
 `
 
 const Desc = styled.div`

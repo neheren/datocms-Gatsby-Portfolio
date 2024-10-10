@@ -25,16 +25,24 @@ const B = styled(Brick)`
     }
     transition: 1.5s cubic-bezier(0, 0.59, 0.08, 1);
 
+    // Add glow effect
+    
+    
     @keyframes rotateIn {
-         0% { 
+        0% { 
             opacity: 0;
+            filter: blur(100px);
             transform: rotateY(90deg) rotateX(45deg) scale(0.8) translateZ(200px) translate(100px, -500px);
         }
-        10% {
+        5% {
             opacity: 1;
+        }
+        60% {
+            filter: blur(0);
         }
         100% { 
             opacity: 1;
+            filter: blur(0);
             transform: rotateY(0deg) rotateX(0deg) scale(1) translateZ(0) translateY(0);
         }
     }
@@ -43,10 +51,12 @@ const B = styled(Brick)`
 
     ${props => !props.b && css`
         opacity: 0;
-        transform: rotateY(90deg) rotateX(45deg) scale(0.8) translateZ(200px) translate(100px, -500px);
-        animation: rotateIn 1.5s linear forwards;
+        transform: rotateY(90deg) rotateX(45deg) scale(0.8) translateZ(200px) translate(100px, -500px) scale(1.8);
+        box-shadow: 0 0 40px rgba(255, 255, 255, 0);
+        filter: blur(100px);
+        animation: rotateIn 1.5s ease-in-out forwards;
         animation-timeline: scroll(root);
-        animation-range: entry 5% cover 30%;
+        animation-range: entry ${(props.i/ 4) + 5 }% cover ${(props.i/ 50) + 30}%;
     `}
 `
 
@@ -156,7 +166,7 @@ const OuterWork: React.FC<IProps> = ({ data }) => {
 
     return (
         <Root>
-            {tiles.map((tile, i) => <tile.type {...tile.props} key={i} />)}
+            {tiles.map((tile, i) => <tile.type {...tile.props} key={i} i={i} />)}
         </Root>
     );
 };

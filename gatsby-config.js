@@ -4,9 +4,11 @@ require('dotenv').config()
 module.exports = {
 	siteMetadata: {
 		title: 'Portfolio of Nikolaj Schlüter Nielsen',
+		siteUrl: `https://slytter.com`,
 	},
 	plugins: [
 		'gatsby-plugin-react-helmet',
+		'gatsby-plugin-sitemap',
 		'gatsby-plugin-sass',
 		'gatsby-transformer-remark',
 		'gatsby-plugin-transition-link',
@@ -15,6 +17,14 @@ module.exports = {
 			options: {
 				// Add any options here
 			},
+		},
+		{
+			resolve: 'gatsby-plugin-robots-txt',
+			options: {
+				host: 'https://slytter.com',
+				sitemap: 'https://slytter.com/sitemap-index.xml',
+				policy: [{userAgent: '*', allow: '/'}]
+			}
 		},
 		{
 			resolve: 'gatsby-plugin-react-svg',
@@ -33,7 +43,7 @@ module.exports = {
 		{
 			resolve: 'gatsby-plugin-manifest',
 			options: {
-				name: 'Portfolio–Nikolaj Schlüter',
+				name: 'Portfolio of Nikolaj Schlüter Nielsen',
 				short_name: 'Schlüters portfolio',
 				start_url: '/',
 				background_color: '#ffffff',

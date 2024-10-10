@@ -50,7 +50,7 @@ const shouldPreload = (content: Content) => {
 	return true
 }
 
-// Preloads images and videos from given Story[] using a cursor and preloadCount
+// Preloads images and videos from given Content[] using a cursor and preloadCount
 // Preload count is the number of images/videos to preload after the cursor
 // Cursor is the current index to start preloading from
 export const usePreLoader = (contents: Content[]) => {

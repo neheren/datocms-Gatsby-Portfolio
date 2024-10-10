@@ -8,7 +8,13 @@ import AniLink from 'gatsby-plugin-transition-link/AniLink'
 import slytLogo from '../../graphics/slytBlack.svg'
 import Brick from './Brick'
 
-const Root = styled.div`
+interface RootProps {
+  image?: string;
+  no?: boolean;
+  b?: boolean;
+}
+
+const Root = styled.div<RootProps>`
     position: relative;
     width: 100%;
     overflow:hidden;
@@ -32,24 +38,16 @@ const Root = styled.div`
 	   }
 	`}
 
-        transition: 1.5s cubic-bezier(0, 0.59, 0.08, 1);
+    transition: 1.5s cubic-bezier(0, 0.59, 0.08, 1);
 
-    @keyframes rotateIn {
-        from { 
-            /* opacity: 0; */
-            transform: rotateY(90deg) rotateX(45deg) scale(0.8) translateZ(100px);
-        }
-        to { 
-            opacity: 1;
-            transform: rotateY(0deg) rotateX(0deg) scale(1) translateZ(0);
-        }
-    }
-    perspective: 1000px;
-
+    // Add glow effect
+    
+    
     ${props => !props.b && css`
-        /* opacity: 0; */
-        transform: rotateY(90deg) rotateX(45deg) scale(0.8) translateZ(100px);
-        animation: rotateIn 1.5s linear forwards;
+        opacity: 0;
+        transform: rotateY(90deg) rotateX(45deg) scale(0.8) translateZ(200px) translate(100px, -500px);
+        box-shadow: 0 0 40px rgba(255, 255, 255, 0);
+        animation: rotateIn 1.5s ease-in-out forwards;
         animation-timeline: scroll(root);
         animation-range: entry 5% cover 30%;
     `}
@@ -65,7 +63,12 @@ const Content = styled.div`
     right:5px;
 `
 
-const Arrow = styled.img`
+interface ArrowProps {
+  big?: boolean;
+  no?: boolean;
+}
+
+const Arrow = styled.img<ArrowProps>`
     position: absolute;
     width: 20%;
     transform: translateZ(40px);
@@ -78,19 +81,28 @@ const Arrow = styled.img`
         bottom: 15px;
 	    opacity: ${props.no ? 1 : 0};
         font-size: 15px;
-        filter: drop-shadow(0 0 5px rgba(0,0,0, ${props.no ? 0 : 0.4})) ${props.no && 'invert(1)'}
+        filter: drop-shadow(0 0 5px rgba(0,0,0, ${props.no ? 0 : 0.4})) ${props.no && 'invert(1)'};
     `};
-    ${props => props.no && css`
+    
+    ${props => props.no ? css`
 		right: 0;
 		left: 0;
 		top: 0;
 		bottom: 0;
 		margin: auto;
 		width: 35%;
+	` : css`
+		pointer-events: none;
 	`};
-    pointer-events: none;
 `
-const Title = styled.h3`
+
+
+interface TitleProps {
+  no?: boolean;
+  big?: boolean;
+}
+
+const Title = styled.h3<TitleProps>`
     pointer-events: none;
     transition: 0.5s cubic-bezier(0, 0.59, 0.08, 1);
     color: ${props => props.no ? 'black' : 'white'};
@@ -106,7 +118,7 @@ const Title = styled.h3`
         bottom: 10px;
         opacity: ${props.no ? 1 : 0};
         font-size: 15px;
-        filter: drop-shadow(0 0 5px rgba(0,0,0, ${props.no ? 0 : 0.9}))
+        filter: drop-shadow(0 0 5px rgba(0,0,0, ${props.no ? 0 : 0.9}));
 
     `};
     transform: translateZ(40px);
@@ -136,7 +148,27 @@ const HoverTransformerWrapper = styled(HoverTransformer)`
 `
 
 
-const CaseThump = (props) => {
+interface CaseThumpProps {
+  className?: string;
+  blank?: boolean;
+  big?: boolean;
+  no?: boolean;
+  openProject: (index: number) => void;
+  getProject: () => {
+    index: string | number;
+    case: {
+      slug: string;
+      title: string;
+      coverImage?: {
+        fluid?: {
+          src: string;
+        };
+      };
+    };
+  };
+}
+
+const CaseThump: React.FC<CaseThumpProps> = (props) => {
 	const project = props.no ? {
 		index: 'all',
 		case: {
