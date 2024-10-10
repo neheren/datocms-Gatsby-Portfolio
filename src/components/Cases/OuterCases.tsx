@@ -72,7 +72,7 @@ const A = styled(CaseThump)`
 `
 
 const Root = styled.div`
-    background: black;
+    /* background: black; */
     padding-top: 1px;
     display: grid;
     grid-template-columns: repeat(10, 1fr);

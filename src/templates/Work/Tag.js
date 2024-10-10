@@ -19,9 +19,9 @@ background: #3c3c3c;
 class MyComponent extends Component {
 	render() {
 		return (
-				<Inner>
-					{this.props.children}
-				</Inner>
+			<Inner>
+				{this.props.children}
+			</Inner>
 		)
 	}
 }

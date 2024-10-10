@@ -192,18 +192,18 @@ const CaseThump: React.FC<CaseThumpProps> = (props) => {
 				</> : <span dangerouslySetInnerHTML={{__html: project.case.title}} />
 			}
 			</Title>
-			<AniLink
+			<AniLink 
 				onClick={props.openProject(project.index)}
 				cover
 				bg={`
-                    url(${slytLogo})
-                    center / 15%   /* position / size */
-                    no-repeat        /* repeat */
-                    fixed            /* attachment */
-                    padding-box      /* origin */
-                    content-box      /* clip */
-                    white            /* color */
-                `}
+          url(${slytLogo})
+          center / 15%   /* position / size */
+          no-repeat        /* repeat */
+          fixed            /* attachment */
+          padding-box      /* origin */
+          content-box      /* clip */
+          white            /* color */
+        `}
 				color="white"
 				direction="down"
 				delay={5}
@@ -223,13 +223,5 @@ const CaseThump: React.FC<CaseThumpProps> = (props) => {
 	)
 }
 
-CaseThump.propTypes = {
-	className: PropTypes.string,
-	blank: PropTypes.bool,
-	big: PropTypes.bool,
-	no: PropTypes.bool,
-	openProject: PropTypes.func,
-	getProject: PropTypes.func,
-}
 
 export default CaseThump

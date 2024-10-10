@@ -33,7 +33,7 @@ const HelmetWrapper = ({ children }) => (
 }`}
 	render={data => (
 		<>
-			<HelmetDatoCms
+			<HelmetDatoCms 
 				favicon={data.datoCmsSite.faviconMetaTags}
 				seo={data.datoCmsHome.seoMetaTags}
 			/>

@@ -4,7 +4,7 @@ require('dotenv').config()
 module.exports = {
 	siteMetadata: {
 		title: 'Portfolio of Nikolaj Schlüter Nielsen',
-		siteUrl: `https://slytter.com`,
+		siteUrl: 'https://slytter.com',
 	},
 	plugins: [
 		'gatsby-plugin-react-helmet',
