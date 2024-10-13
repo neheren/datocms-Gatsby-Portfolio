@@ -1,5 +1,4 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Fade } from 'react-reveal'
 import Container from '../Shared/Container'
@@ -62,13 +61,10 @@ const GradiantBGWrapper = styled.div`
 
 const Desc = styled.div`
     line-height: 1.5;
-
+    font-weight: 400;
     strong{
         font-weight: bold;
     }
-    // lowercase
-    /* text-transform: lowercase; */
-    font-weight: 400;
 `
 
 const Header = styled.h2`

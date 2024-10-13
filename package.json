@@ -6,6 +6,7 @@
   "dependencies": {
     "@mdx-js/mdx": "^2.2.1",
     "@mdx-js/react": "^2.2.1",
+    "@rive-app/react-canvas": "^4.14.4",
     "babel-plugin-styled-components": "^1.10.6",
     "dotenv": "^7.0.0",
     "gatsby": "^5.3.3",

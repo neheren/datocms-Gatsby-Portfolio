@@ -8,6 +8,7 @@ import Links from './Links'
 import Copyright from '../Copyright'
 import InlineVideo from './Video'
 import ProjectLinks from './ProjectLinks'
+import Rive, { useRive } from '@rive-app/react-canvas';
 
 const Root = styled.div`
     display: grid;
@@ -59,10 +60,10 @@ const MenuWrapper = styled.div`
     align-self: center;
 `
 
-const Logo = styled.img`
+const LogoImg = styled.div`
     padding: 50px;
     transform: translateZ(250px);
-    width: 200px;
+    width: 500px;
     position: absolute;
     left:0;
     right:0;
@@ -71,6 +72,20 @@ const Logo = styled.img`
     margin: auto;
     z-index: 1000;
 `
+
+
+
+const RiveAnimation = () => {
+    const { rive, RiveComponent } = useRive({
+        src: '/test.riv',
+        autoplay: true,
+      });
+    
+
+    return <LogoImg>
+        <RiveComponent />
+    </LogoImg>
+}
 
 const CopyrightWrapper = styled.div`
     grid-column: 1 / 2;
@@ -82,7 +97,7 @@ const CopyrightWrapper = styled.div`
     }
 `
 
-const ArrowDown = styled.img`
+const ArrowDown = styled.img<{black?: boolean}>`
     cursor: pointer;
     @keyframes hoverfx {
         0%{
@@ -102,6 +117,7 @@ const ArrowDown = styled.img`
     width: 20px;
     padding: ${props => props.theme.spacing(1, 2)};
     animation: hoverfx 2s infinite cubic-bezier(0.65, 0.05, 0.36, 1);
+    filter: ${props => props.black ? 'invert(1)' : 'none'};
 `
 
 const scrollDown = () => {
@@ -141,10 +157,10 @@ const Front = (props) => {
 			</CopyrightWrapper>
 			{isProject ? <ProjectLinks caseName={props.caseName} /> : < Links/>}
 			<Video>
-				<InlineVideo videoLink={props.videoLink} isProject={isProject} style={{transform: 'translateZ(150px) translateX(-10%)'}} />
-				{!isProject && <Logo src={firstNameShown === 0 ? nikoLogo : slytLogo} />}
+				<InlineVideo videoLink={props.videoLink} isProject={isProject} />
+				{!isProject && <RiveAnimation src={firstNameShown === 0 ? nikoLogo : slytLogo} />}
 			</Video>
-			<ArrowDown src={arrowDown} onClick={scrollDown.bind(this)}/>
+			<ArrowDown src={arrowDown} onClick={scrollDown.bind(this)} black={isProject}/>
 		</Root>
 	)
 }

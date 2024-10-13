@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import { ThemeProvider } from 'styled-components'
-import Front from '../components/Front/index.js'
+import Front from '../components/Front/Front'
 import theme from '../styles/theme'
 import OuterCases from '../components/Cases/OuterCases'
 import Menu from '../components/Menu'
@@ -19,20 +19,20 @@ const IndexPage = ({data}) => {
 	console.log('SEO', data.home)
 	return	<ThemeProvider theme={theme}>
 		<HelmetWrapper>
-			<h1 style={{display: 'none'}}>Portfolio by Nikolaj Schlüter Nielsen</h1>
-			<Menu/>
-			<HelmetDatoCms seo={data.home.seoMetaTags} />
-			<Front videoLink={'https://kirstineogsigurd.dk/portfoliovideo.mp4'} isProject={false}/>
-			<OuterCases />
-			<About data={data.about}/>
-			<Tiles/>
-			<Footer/>
+      <div style={{position: 'relative', background: '#000'}} >
+        <h1 style={{display: 'none'}}>Portfolio by Nikolaj Schlüter Nielsen</h1>
+        <Menu/>
+        <HelmetDatoCms seo={data.home.seoMetaTags} />
+        <Front videoLink={'https://kirstineogsigurd.dk/portfoliovideo.mp4'} isProject={false}/>
+        <OuterCases />
+        <About data={data.about}/>
+        <Tiles/>
+        <Footer/>
+      </div>
 		</HelmetWrapper>
 	</ThemeProvider>
 }
 
-IndexPage.propTypes = {
-}
 
 export default IndexPage
 

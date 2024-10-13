@@ -1,23 +1,19 @@
 import React from 'react'
-import Slider from 'react-slick'
 import { HelmetDatoCms } from 'gatsby-source-datocms'
-import Img from 'gatsby-image'
 import { graphql } from 'gatsby'
-import Front from '../components/Front'
+import Front from '../components/Front/Front'
 import styled, { ThemeProvider, css } from 'styled-components'
 import theme from '../styles/theme'
 import Container from '../components/Shared/Container'
-import TagName from './Work/Tag'
+import { Tag } from './Work/Tag'
 import Menu from '../components/Menu'
 import AliceCarousel from 'react-alice-carousel'
-import 'react-alice-carousel/lib/alice-carousel.css';
-import 'swiper/css';
-import 'swiper/css/pagination';
+import 'react-alice-carousel/lib/alice-carousel.css'
+import 'swiper/css'
+import 'swiper/css/pagination'
 import {usePreLoader} from '../hooks/usePreloader'
 import Footer from '../components/Footer/Footer'
 import Markdown from '../components/Shared/Markdown'
-
-
 
 
 const Doc = styled.div`
@@ -69,41 +65,12 @@ const ImageWrapper = styled.span`
   padding-right: ${props => props.theme.spacing(2)};
 `
 
-const Arrow = styled.img`
-  height: 40px !important;
-  width: 28px !important;
-  margin: ${props => props.theme.spacing(0, -4)};
-  transition: 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
-  &:hover{
-
-    width: 32px !important;
-  }
-    /* transform: scale() !important; */
-  ${props => props.reverse && css`
-    transform: rotate(180deg) !important;
-  `}
-`
-
-const SliderWrapped = styled(Slider)`
-  margin: ${props => props.theme.spacing(2, 0)};
-  div{
-    height: 400px;
-  }
-`
-
-
-const responsive = {
-	0: { items: 1 },
-	1024: { items: 2 },
-};
-
 
 const Work = ({ data }) => {
 	const items = data.datoCmsWork.gallery.map(({ fluid }) => (
 		<ImageWrapper>
 			<Image alt={data.datoCmsWork.title} key={fluid.src} src={fluid.src} draggable="false"  />
 		</ImageWrapper>
-
 	))
 
 	const {didPreload} = usePreLoader(data.datoCmsWork.gallery.map(({ fluid }) => ({
@@ -126,7 +93,7 @@ const Work = ({ data }) => {
 					<Header>{data.datoCmsWork.title}</Header>
 					{
 						data.datoCmsWork.tags.map((tag, i) => {
-							return <TagName key={i}>{tag.tagLine}</TagName>
+							return <Tag key={i}>{tag.tagLine}</Tag>
 						})
 					}
 					{data.datoCmsWork.excerpt && <Desc>{data.datoCmsWork.excerpt}</Desc>}

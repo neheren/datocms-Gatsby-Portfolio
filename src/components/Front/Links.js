@@ -8,6 +8,7 @@ const Root = styled.div`
     align-items:center;
     grid-column: 2 / 3;
     grid-row: 1 / 2;
+    z-index: 10;
 `
 
 const LinkWrapper = styled.div`

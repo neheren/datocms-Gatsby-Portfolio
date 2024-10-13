@@ -24,39 +24,39 @@ const B = styled(Brick)`
         `}
     }
     transition: 1.5s cubic-bezier(0, 0.59, 0.08, 1);
-
-    // Add glow effect
     
     
     @keyframes rotateIn {
         0% { 
             opacity: 0;
-            filter: blur(100px);
-            transform: rotateY(90deg) rotateX(45deg) scale(0.8) translateZ(200px) translate(100px, -500px);
+            filter: blur(50px);
+            transform-origin: center;
+            transform: rotateY(-90deg) rotateX(-0deg) rotateY(30deg) translate3d(100px, -500px, -100px);
         }
         5% {
             opacity: 1;
         }
-        60% {
+        40% {
             filter: blur(0);
         }
         100% { 
             opacity: 1;
             filter: blur(0);
-            transform: rotateY(0deg) rotateX(0deg) scale(1) translateZ(0) translateY(0);
+            transform: rotateY(0deg) rotateX(0deg) rotateY(0deg) translate3d(0, 0, 0);
         }
     }
 
+    transform-style: preserve-3d;
+    transform-origin: center;
     perspective: 1000px;
 
     ${props => !props.b && css`
         opacity: 0;
-        transform: rotateY(90deg) rotateX(45deg) scale(0.8) translateZ(200px) translate(100px, -500px) scale(1.8);
-        box-shadow: 0 0 40px rgba(255, 255, 255, 0);
-        filter: blur(100px);
-        animation: rotateIn 1.5s ease-in-out forwards;
+        /* filter: blur(60px); */
+        animation: rotateIn 1.5s ease-out forwards;
+        will-change: transform, filter;
         animation-timeline: scroll(root);
-        animation-range: entry ${(props.i/ 4) + 5 }% cover ${(props.i/ 50) + 30}%;
+        animation-range: entry ${(props.i/ 4)}% cover ${32}%;
     `}
 `
 
@@ -72,7 +72,6 @@ const A = styled(CaseThump)`
 `
 
 const Root = styled.div`
-    /* background: black; */
     padding-top: 1px;
     display: grid;
     grid-template-columns: repeat(10, 1fr);
@@ -88,6 +87,19 @@ const Root = styled.div`
     scroll-timeline-name: --cases-scroll;
     scroll-timeline-axis: block;
     perspective: 1000px;
+
+    @keyframes blurOut {
+        0% {
+            filter: blur(30px);
+        }
+        100% {
+            filter: blur(0);
+        }
+    }
+    animation: blurOut 1.5s ease-in-out forwards;
+    /* animation-timeline: scroll(root); */
+    animation-range: entry ${0}% cover ${20}%;
+
 `
 
 interface IWorkNode {
@@ -165,7 +177,7 @@ const OuterWork: React.FC<IProps> = ({ data }) => {
     ]
 
     return (
-        <Root>
+        <Root >
             {tiles.map((tile, i) => <tile.type {...tile.props} key={i} i={i} />)}
         </Root>
     );
