@@ -17,7 +17,7 @@ const Root = styled.div<RootProps>`
   width: 100%;
   overflow:hidden;
   background: url(${props => props.image + '?w=500&h=500'});
-  background-size:cover;  
+  background-size: cover;  
   background-position: center;
   font-weight: bolder;
 
@@ -36,17 +36,19 @@ const Root = styled.div<RootProps>`
       }
   `}
 
-  transition: 1.5s cubic-bezier(0, 0.59, 0.08, 1);
+  transform-style: preserve-3d;
+  transform-origin: center;
 
   perspective: 1000px;
 
   ${props => !props.b && css`
     opacity: 0;
-    transform: rotateY(-90deg) rotateX(-0deg) rotateY(30deg) translate3d(100px, -500px, -100px);
-    box-shadow: 0 0 40px rgba(255, 255, 255, 0);
-    animation: rotateIn 1.5s ease-in-out forwards;
-    animation-timeline: scroll(root);
-    animation-range: entry 5% cover 30%;
+    animation: rotateIn 1s ease-out forwards;
+    will-change: transform, filter;
+    animation-play-state: paused;
+    animation-delay: calc(var(--scroll) * -1s);
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
   `}
 
 `
@@ -115,7 +117,6 @@ const Title = styled.h3<TitleProps>`
         opacity: ${props.no ? 1 : 0};
         font-size: 15px;
         filter: drop-shadow(0 0 5px rgba(0,0,0, ${props.no ? 0 : 0.9}));
-
     `};
     transform: translateZ(40px);
     b {
@@ -130,7 +131,7 @@ const HoverTransformerWrapper = styled(HoverTransformer)`
     cursor: pointer;
     transition: 0.5s cubic-bezier(0, 0.59, 0.08, 1);
     :hover{
-        transform: translateZ(0px) scale3d(0.90, 0.90, 0.90);
+        transform: scale3d(0.90, 0.90, 0.90);
         ${Title}{
             opacity: 1 !important;
         }
@@ -139,7 +140,7 @@ const HoverTransformerWrapper = styled(HoverTransformer)`
         }
     }
     :active {
-        transform: translateZ(0px) scale3d(0.85, 0.85, 0.85);
+      transform: scale3d(0.85, 0.85, 0.85);
     }
 `
 

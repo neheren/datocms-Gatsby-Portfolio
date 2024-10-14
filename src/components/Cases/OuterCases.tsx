@@ -23,7 +23,6 @@ const B = styled(Brick)`
             display: none;
         `}
     }
-    transition: 1.5s cubic-bezier(0, 0.59, 0.08, 1);
     @keyframes rotateIn${props => props.blur ? 'Blur' : ''} {
         0% {
             opacity: 0;
@@ -82,8 +81,6 @@ const Root = styled.div`
     @media ${props => props.theme.media.sm} {
         grid-template-columns: repeat(2, 1fr);
     }
-    scroll-timeline-name: --cases-scroll;
-    scroll-timeline-axis: block;
     perspective: 1000px;
 
     @keyframes blurOut {
@@ -188,7 +185,7 @@ const OuterWork: React.FC<IProps> = ({ data }) => {
 
     return (
         <Root>
-            {tiles.map((tile, i) => <tile.type {...tile.props} key={i} i={i} blur={i < 10} />)}
+            {tiles.map((tile, i) => <tile.type {...tile.props} key={i} i={i} blur={i < 20} />)}
         </Root>
     );
 };

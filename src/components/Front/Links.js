@@ -19,16 +19,17 @@ const LinkItem = styled.a`
     text-decoration: none;
     color: white;
     font-weight: ${props => props.first ? 'bold' : 'normal'};
-    margin-right: ${props => props.theme.spacing(2)};
+    margin-right: ${props => props.theme.spacing(4)};
     
-    cursor: ${props => props.first ? 'pointer' : 'none'};
+    cursor: ${props => props.first ? 'cell' : 'pointer'};
     @media ${props => props.theme.media.md} {
         margin-left: ${props => props.first ? props.theme.spacing(0) : props.theme.spacing(1.5)};
     }
     @media ${props => props.theme.media.md} { 
         margin-right: ${props => props.theme.spacing(2)};
-        margin-left: 16px;
+        margin-left: ${props => props.theme.spacing(0)};
     }
+    padding: 16px 0;
 `
 
 function Links() {
