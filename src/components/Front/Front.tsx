@@ -6,7 +6,7 @@ import nikoLogo from '../../graphics/nikolaj.svg'
 import arrowDown from '../../graphics/downArrow.svg'
 import Links from './Links'
 import Copyright from '../Copyright'
-import InlineVideo from './Video'
+import { VideoComponent } from './Video'
 import ProjectLinks from './ProjectLinks'
 import Rive, { useRive } from '@rive-app/react-canvas';
 
@@ -63,7 +63,7 @@ const MenuWrapper = styled.div`
 const LogoImg = styled.div`
     padding: 50px;
     transform: translateZ(250px);
-    width: 500px;
+    max-width: 600px;
     position: absolute;
     left:0;
     right:0;
@@ -118,6 +118,7 @@ const ArrowDown = styled.img<{black?: boolean}>`
     padding: ${props => props.theme.spacing(1, 2)};
     animation: hoverfx 2s infinite cubic-bezier(0.65, 0.05, 0.36, 1);
     filter: ${props => props.black ? 'invert(1)' : 'none'};
+    z-index: 1000;
 `
 
 const scrollDown = () => {
@@ -157,7 +158,7 @@ const Front = (props) => {
 			</CopyrightWrapper>
 			{isProject ? <ProjectLinks caseName={props.caseName} /> : < Links/>}
 			<Video>
-				<InlineVideo videoLink={props.videoLink} isProject={isProject} />
+				<VideoComponent videoLink={props.videoLink} isProject={isProject} />
 				{!isProject && <RiveAnimation src={firstNameShown === 0 ? nikoLogo : slytLogo} />}
 			</Video>
 			<ArrowDown src={arrowDown} onClick={scrollDown.bind(this)} black={isProject}/>

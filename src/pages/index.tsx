@@ -17,16 +17,16 @@ const IndexPage = ({data}) => {
 
 	return	<ThemeProvider theme={theme}>
 		<HelmetWrapper>
-      <div style={{position: 'relative', background: '#000'}} >
-        <h1 style={{display: 'none'}}>Portfolio by Nikolaj Schlüter Nielsen</h1>
-        <Menu/>
-        <HelmetDatoCms seo={data.home.seoMetaTags} />
-        <Front videoLink={'https://kirstineogsigurd.dk/portfoliovideo.mp4'} isProject={false}/>
-        <OuterCases />
-        <About data={data.about} photos={data.aboutPhotos.nodes[0].photos}/>
-        <Tiles/>
-        <Footer/>
-      </div>
+			<div style={{position: 'relative', background: '#000'}} >
+				<h1 style={{display: 'none'}}>Portfolio by Nikolaj Schlüter Nielsen</h1>
+				<Menu/>
+				<HelmetDatoCms seo={data.home.seoMetaTags} />
+				<Front videoLink={'https://kirstineogsigurd.dk/portfoliovideo.mp4'} isProject={false}/>
+				<OuterCases />
+				<About data={data.about} photos={data.aboutPhotos.nodes[0].photos}/>
+				<Tiles/>
+				<Footer/>
+			</div>
 		</HelmetWrapper>
 	</ThemeProvider>
 }

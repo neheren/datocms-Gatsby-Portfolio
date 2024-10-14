@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ReactPlayer from 'react-player'
-import PropTypes from 'prop-types'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 
 const BlurWrapper = styled.div<{ isProject: boolean }>`
@@ -30,7 +29,7 @@ type VideoProps = {
     style?: React.CSSProperties,
 }
 
-function Video(props: VideoProps) {
+export function VideoComponent(props: VideoProps) {
     const [blurAmount, setBlurAmount] = useState(0)
 
     useEffect(() => {
@@ -66,4 +65,3 @@ function Video(props: VideoProps) {
 }
 
 
-export default Video

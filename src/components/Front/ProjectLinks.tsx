@@ -33,7 +33,7 @@ const Arrow = styled.img`
 `
 
 
-function ProjectLinks(props) {
+function ProjectLinks(props: {caseName: string}) {
 	return (
 		<Root>
 			<AniLink to="/cases" swipe direction="right" duration={0.4} style={{textDecoration: 'none'}}>

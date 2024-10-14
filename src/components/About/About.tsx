@@ -43,6 +43,7 @@ const Image = styled.img`
     height: 100%;
     object-fit: contain;
     transition: all 0.3s ease-in-out;
+    filter: drop-shadow(0px 0px 16px rgba(0, 0, 0, 0.5));
 `
 
 const GradiantBG = styled.div`

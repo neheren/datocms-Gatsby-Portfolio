@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import styled, { css } from 'styled-components'
 import Brick from './Brick'
 import CaseThump from './CaseThump'
@@ -49,11 +49,12 @@ const B = styled(Brick)`
 
     ${props => !props.b && css`
         opacity: 0;
-        /* filter: blur(60px); */
-        animation: rotateIn${props => props.blur ? 'Blur' : ''} 1.5s ease-out forwards;
+        animation: rotateIn${props => props.blur ? 'Blur' : ''} 1s ease-out forwards;
         will-change: transform, filter;
-        animation-timeline: scroll(root);
-        animation-range: entry ${(props.i/ 4)}% cover ${32}%;
+        animation-play-state: paused;
+        animation-delay: calc(var(--scroll) * -1s);
+        animation-iteration-count: 1;
+        animation-fill-mode: both;
     `}
 `
 
@@ -93,10 +94,11 @@ const Root = styled.div`
             filter: blur(0);
         }
     }
-    animation: blurOut 1.5s ease-in-out forwards;
-    animation-timeline: scroll(root);
-    animation-range: entry ${0}% cover ${20}%;
-
+    animation: blurOut 1s ease-in-out forwards;
+    animation-play-state: paused;
+    animation-delay: calc(var(--scroll) * -1s);
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
 `
 
 interface IWorkNode {
@@ -174,8 +176,18 @@ const OuterWork: React.FC<IProps> = ({ data }) => {
         <B lg b {...p} />,  <B md b {...p} />,  <B sm  {...p} />,   <B sm b {...p} />,  <B sm b {...p} />,  <B b {...p} />,  <B sm b {...p} />,<B sm b {...p} />,   <B md b {...p} />,  <B lg b {...p} />,
     ]
 
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollPercentage = Math.min(window.scrollY / window.innerHeight, 1);
+            document.documentElement.style.setProperty('--scroll', scrollPercentage.toString());
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
     return (
-        <Root >
+        <Root>
             {tiles.map((tile, i) => <tile.type {...tile.props} key={i} i={i} blur={i < 10} />)}
         </Root>
     );
