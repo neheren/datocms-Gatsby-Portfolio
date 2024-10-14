@@ -28,7 +28,7 @@ const B = styled(Brick)`
             opacity: 0;
             filter: blur(${props => props.blur ? 50 : 0}px);
             transform-origin: center;
-            transform: rotateY(-90deg) rotateX(-0deg) rotateY(30deg) translate3d(100px, -500px, -100px);
+            transform: rotateY(-90deg) rotateX(-20deg) rotateY(30deg) translate3d(100px, -500px, -100px);
         }
         5% {
             opacity: 1;
@@ -87,7 +87,7 @@ const Root = styled.div`
         0% {
             filter: blur(10px);
         }
-        100% {
+        50% {
             filter: blur(0);
         }
     }
