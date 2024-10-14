@@ -61,7 +61,7 @@ const MenuWrapper = styled.div`
 `
 
 const LogoImg = styled.div`
-    padding: 50px;
+    padding: 8px;
     transform: translateZ(250px);
     max-width: 600px;
     position: absolute;

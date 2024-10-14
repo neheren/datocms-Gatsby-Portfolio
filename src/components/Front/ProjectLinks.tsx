@@ -21,7 +21,7 @@ const LinkItem = styled.span`
     font-weight: ${props => props.first ? 'bold' : 'normal'};
     pointer-events: ${props => props.first ? 'all': 'none'};
 
-    @media ${props => props.theme.media.sm} {
+    @media ${props => props.theme.media.md} {
         font-size: 12px;
     }
     text-transform: lowercase;

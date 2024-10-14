@@ -46,8 +46,8 @@ module.exports = {
 				name: 'Portfolio of Nikolaj Schlüter Nielsen',
 				short_name: 'Schlüters portfolio',
 				start_url: '/',
-				background_color: '#ffffff',
-				theme_color: '#ffffff',
+				background_color: '#000',
+				theme_color: '#000',
 				display: 'minimal-ui',
 				icon: 'src/favicons/favicon-32x32.png', // This path is relative to the root of the site.
 				icons: [

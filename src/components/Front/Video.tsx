@@ -55,8 +55,8 @@ export function VideoComponent(props: VideoProps) {
                 height="inherit"
                 width="inherit" 
                 controls={isProject} 
-                playsinline={isProject} 
-                playing 
+                playsinline={isProject}
+                playing
                 url={props.videoLink} 
                 style={props.style}
             />

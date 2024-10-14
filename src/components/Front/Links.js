@@ -6,7 +6,7 @@ const Root = styled.div`
     height: 100%;
     display: flex;
     align-items:center;
-    grid-column: 2 / 3;
+    grid-column: 2 / 4;
     grid-row: 1 / 2;
     z-index: 10;
 `
@@ -15,16 +15,19 @@ const LinkWrapper = styled.div`
     max-width: 100%;
 `
 
-const LinkItem = styled(AniLink)`
+const LinkItem = styled.a`
     text-decoration: none;
     color: white;
     font-weight: ${props => props.first ? 'bold' : 'normal'};
-    margin-right: ${props => props.first ? props.theme.spacing(2) : props.theme.spacing(2)};
+    margin-right: ${props => props.theme.spacing(2)};
+    
+    cursor: ${props => props.first ? 'pointer' : 'none'};
     @media ${props => props.theme.media.md} {
-    	margin-left: ${props => props.first ? props.theme.spacing(0) : props.theme.spacing(1.5)};
+        margin-left: ${props => props.first ? props.theme.spacing(0) : props.theme.spacing(1.5)};
     }
-    @media ${props => props.theme.media.sm} {
-        font-size: 12px;
+    @media ${props => props.theme.media.md} { 
+        margin-right: ${props => props.theme.spacing(2)};
+        margin-left: 16px;
     }
 `
 
@@ -32,9 +35,9 @@ function Links() {
 	return (
 		<Root>
 			<LinkWrapper>
-				<LinkItem to="/" first>schlüter</LinkItem>
-				<LinkItem to="/cases" swipe direction="left" duration={0.4} >cases</LinkItem>
-				<LinkItem to="#about">about</LinkItem>
+				<LinkItem href="/" first>schlüter</LinkItem>
+				<LinkItem href="/cases" swipe direction="left" duration={0.4} >cases</LinkItem>
+				<LinkItem href="#about">about</LinkItem>
 			</LinkWrapper>
 		</Root>
 	)
