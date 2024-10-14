@@ -1,9 +1,7 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import HoverTransformer from '../HoverTransformer'
 import arrow from '../../graphics/arrow-white.svg'
-import arrowRound from '../../graphics/arrowRound.svg'
 import AniLink from 'gatsby-plugin-transition-link/AniLink'
 import slytLogo from '../../graphics/slytBlack.svg'
 import Brick from './Brick'
@@ -15,43 +13,41 @@ interface RootProps {
 }
 
 const Root = styled.div<RootProps>`
-    position: relative;
-    width: 100%;
-    overflow:hidden;
-    background: url(${props => props.image + '?w=500&h=500'});
-    background-size:cover;  
-    background-position: center;
-    font-weight: bolder;
+  position: relative;
+  width: 100%;
+  overflow:hidden;
+  background: url(${props => props.image + '?w=500&h=500'});
+  background-size:cover;  
+  background-position: center;
+  font-weight: bolder;
 
-    :after {
-        content: "";
-        display: block;
-        padding-bottom: 100%;
-    }
-    filter: brightness(1) contrast(1.1);
-    transition: 0.5s cubic-bezier(0, 0.59, 0.08, 1);
-   ${props => props.no ? css`
-	background: white;
-	` : css`
-	   :hover {
-	      filter: brightness(0.9);
-	   }
-	`}
+  :after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
+  filter: brightness(1) contrast(1.1);
+  transition: 0.5s cubic-bezier(0, 0.59, 0.08, 1);
+  ${props => props.no ? css`
+    background: white;
+  ` : css`
+      :hover {
+        filter: brightness(0.9);
+      }
+  `}
 
-    transition: 1.5s cubic-bezier(0, 0.59, 0.08, 1);
+  transition: 1.5s cubic-bezier(0, 0.59, 0.08, 1);
 
-    // Add glow effect
-    
-    
-    ${props => !props.b && css`
-        opacity: 0;
-        transform: rotateY(90deg) rotateX(45deg) scale(0.8) translateZ(200px) translate(100px, -500px);
-        box-shadow: 0 0 40px rgba(255, 255, 255, 0);
-        animation: rotateIn 1.5s ease-in-out forwards;
-        animation-timeline: scroll(root);
-        animation-range: entry 5% cover 30%;
-    `}
+  perspective: 1000px;
 
+  ${props => !props.b && css`
+    opacity: 0;
+    transform: rotateY(-90deg) rotateX(-0deg) rotateY(30deg) translate3d(100px, -500px, -100px);
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0);
+    animation: rotateIn 1.5s ease-in-out forwards;
+    animation-timeline: scroll(root);
+    animation-range: entry 5% cover 30%;
+  `}
 
 `
 

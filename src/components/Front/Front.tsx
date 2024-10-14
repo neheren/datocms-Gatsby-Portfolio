@@ -77,7 +77,7 @@ const LogoImg = styled.div`
 
 const RiveAnimation = () => {
     const { rive, RiveComponent } = useRive({
-        src: '/test.riv',
+        src: '/slytter.riv',
         autoplay: true,
       });
     

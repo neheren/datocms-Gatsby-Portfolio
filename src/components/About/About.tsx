@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { Fade } from 'react-reveal'
 import Container from '../Shared/Container'
@@ -20,17 +20,29 @@ const Content = styled.div`
     color: white;
 `
 
-const Image = styled(Img)`
-    border: 5px solid white;
-    grid-row: 1 / -1;
+
+const ImageContainer = styled.div`
     width: 100%;
     padding-bottom: 100%;
+    grid-row: 1 / -1;
+    position: relative;
+    
+`
+
+const Image = styled.img`
     img{
         object-position: top center !important;
     }
     div{
         padding-bottom:0 !important;
     }
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: all 0.3s ease-in-out;
 `
 
 const GradiantBG = styled.div`
@@ -74,15 +86,40 @@ const Header = styled.h2`
 
 const Right = styled.div``
 
-export default (props) => {
-	return (
+interface ImageCarouselProps {
+    photos: { url: string }[]
+}
+
+const ImageCarousel: React.FC<ImageCarouselProps> = ({ photos }) => {
+    const [currentPhoto, setCurrentPhoto] = useState(0)
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentPhoto(currentPhoto => (currentPhoto + 1) % photos.length)
+        }, 400)
+        return () => clearInterval(interval)
+    }, [photos])
+
+    return (
+        <ImageContainer>
+            <Image src={photos[currentPhoto].url + '?w=600&fm=webp'} alt="Carousel image" />
+        </ImageContainer>
+    )
+}
+
+export default (props: {data: any, photos: {url: string}[]}) => {
+
+    console.log('p', props.photos) 
+
+
+    return (
 		<GradiantBGWrapper>
 			<GradiantBG>
 				<a id={'about'}/>
 				<Root>
 					<Container>
 						<Content>
-							<Image fluid={props.data.photo.fluid}/>
+                            <ImageCarousel photos={props.photos} />
 							<Right>
 								<Header>
 									<Fade bottom>
@@ -102,4 +139,3 @@ export default (props) => {
 		</GradiantBGWrapper>
 	)
 }
-

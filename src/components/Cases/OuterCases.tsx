@@ -24,12 +24,10 @@ const B = styled(Brick)`
         `}
     }
     transition: 1.5s cubic-bezier(0, 0.59, 0.08, 1);
-    
-    
-    @keyframes rotateIn {
-        0% { 
+    @keyframes rotateIn${props => props.blur ? 'Blur' : ''} {
+        0% {
             opacity: 0;
-            filter: blur(50px);
+            filter: blur(${props => props.blur ? 50 : 0}px);
             transform-origin: center;
             transform: rotateY(-90deg) rotateX(-0deg) rotateY(30deg) translate3d(100px, -500px, -100px);
         }
@@ -41,7 +39,6 @@ const B = styled(Brick)`
         }
         100% { 
             opacity: 1;
-            filter: blur(0);
             transform: rotateY(0deg) rotateX(0deg) rotateY(0deg) translate3d(0, 0, 0);
         }
     }
@@ -53,7 +50,7 @@ const B = styled(Brick)`
     ${props => !props.b && css`
         opacity: 0;
         /* filter: blur(60px); */
-        animation: rotateIn 1.5s ease-out forwards;
+        animation: rotateIn${props => props.blur ? 'Blur' : ''} 1.5s ease-out forwards;
         will-change: transform, filter;
         animation-timeline: scroll(root);
         animation-range: entry ${(props.i/ 4)}% cover ${32}%;
@@ -90,14 +87,14 @@ const Root = styled.div`
 
     @keyframes blurOut {
         0% {
-            filter: blur(30px);
+            filter: blur(10px);
         }
         100% {
             filter: blur(0);
         }
     }
     animation: blurOut 1.5s ease-in-out forwards;
-    /* animation-timeline: scroll(root); */
+    animation-timeline: scroll(root);
     animation-range: entry ${0}% cover ${20}%;
 
 `
@@ -163,6 +160,7 @@ const OuterWork: React.FC<IProps> = ({ data }) => {
         },
         chosenProject,
         projectOpened,
+        
     };
 
     const tiles = [
@@ -178,7 +176,7 @@ const OuterWork: React.FC<IProps> = ({ data }) => {
 
     return (
         <Root >
-            {tiles.map((tile, i) => <tile.type {...tile.props} key={i} i={i} />)}
+            {tiles.map((tile, i) => <tile.type {...tile.props} key={i} i={i} blur={i < 10} />)}
         </Root>
     );
 };
