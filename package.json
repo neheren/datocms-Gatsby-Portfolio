@@ -25,6 +25,7 @@
     "gatsby-transformer-remark": "^6.3.2",
     "global": "^4.4.0",
     "gsap": "^3.11.4",
+    "keen-slider": "^6.8.6",
     "react": "^18.2.0",
     "react-alice-carousel": "^2.7.1",
     "react-bodymovin": "^2.0.0",

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import Menu from '../components/Menu'
 import theme from '../styles/theme'
 import {ThemeProvider} from 'styled-components'
@@ -9,7 +9,12 @@ import HelmetWrapper from '../components/layout'
 
 
 function CasesPage({data}) {
-    return <ThemeProvider theme={theme}>
+  useEffect(() => {
+    document.documentElement.style.setProperty('--scroll', '1');
+  }, [])
+
+
+  return <ThemeProvider theme={theme}>
 		<HelmetWrapper>
 			<Menu isProject={true}/>
 			<AllCasesHeader/>

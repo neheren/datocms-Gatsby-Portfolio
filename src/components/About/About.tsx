@@ -4,6 +4,8 @@ import { Fade } from 'react-reveal'
 import Container from '../Shared/Container'
 import Img from 'gatsby-image'
 import Markdown from '../Shared/Markdown'
+import 'keen-slider/keen-slider.min.css'
+import { useKeenSlider } from 'keen-slider/react'
 
 const Root = styled.div`
     padding: ${props => props.theme.spacing(16, 0)};
@@ -30,20 +32,14 @@ const ImageContainer = styled.div`
 `
 
 const Image = styled.img`
-    img{
-        object-position: top center !important;
-    }
-    div{
-        padding-bottom:0 !important;
-    }
+    object-fit: contain;
+    transition: all 0.3s ease-in-out;
+    filter: drop-shadow(0px 0px 16px rgba(0, 0, 0, 0.5));
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    transition: all 0.3s ease-in-out;
-    filter: drop-shadow(0px 0px 16px rgba(0, 0, 0, 0.5));
 `
 
 const GradiantBG = styled.div`
@@ -90,20 +86,63 @@ const Right = styled.div``
 interface ImageCarouselProps {
     photos: { url: string }[]
 }
+const animation = { duration: 2000,}
 
 const ImageCarousel: React.FC<ImageCarouselProps> = ({ photos }) => {
-    const [currentPhoto, setCurrentPhoto] = useState(0)
+    const items = photos.map((photo, index) => (
+        <Image src={`${photo.url}?w=600&fm=webp`} alt={`Carousel image ${index + 1}`} />
+    ))
+    
+    const [sliderRef] = useKeenSlider(
+        {
+          loop: true,
+        },
+        [
+          (slider) => {
+            let timeout
+            let mouseOver = false
+            function clearNextTimeout() {
+              clearTimeout(timeout)
+            }
+            function nextTimeout() {
+              clearTimeout(timeout)
+              if (mouseOver) return
+              timeout = setTimeout(() => {
+                slider.next()
+              }, 1000)
+            }
+            slider.on("created", () => {
+              slider.container.addEventListener("mouseover", () => {
+                mouseOver = true
+                clearNextTimeout()
+              })
+              slider.container.addEventListener("mouseout", () => {
+                mouseOver = false
+                nextTimeout()
+              })
+              nextTimeout()
+            })
+            slider.on("dragStarted", clearNextTimeout)
+            slider.on("animationEnded", nextTimeout)
+            slider.on("updated", nextTimeout)
+          },
+        ]
+      )
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentPhoto(currentPhoto => (currentPhoto + 1) % photos.length)
-        }, 400)
-        return () => clearInterval(interval)
-    }, [photos])
-
+      
     return (
         <ImageContainer>
-            <Image src={photos[currentPhoto].url + '?w=600&fm=webp'} alt="Carousel image" />
+            <div ref={sliderRef} className="keen-slider" style={{height: '100%', width: '100%', position: 'absolute', top: 0, left: 0}}>
+                {items.map((item, index) => (
+                    <div key={index} className="keen-slider__slide" style={{
+                        height: '100%',
+                        width: '100%',
+                        position: 'relative',
+                    }}>
+                        {item}
+                    </div>
+                ))}
+            </div>
         </ImageContainer>
     )
 }

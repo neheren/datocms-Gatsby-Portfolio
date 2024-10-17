@@ -10,6 +10,7 @@ interface RootProps {
   image?: string;
   no?: boolean;
   b?: boolean;
+  animate?: boolean;
 }
 
 const Root = styled.div<RootProps>`
@@ -41,7 +42,7 @@ const Root = styled.div<RootProps>`
 
   perspective: 1000px;
 
-  ${props => !props.b && css`
+  ${props => !props.b && props.animate && css`
     opacity: 0;
     animation: rotateIn 1s ease-out forwards;
     will-change: transform, filter;
@@ -150,6 +151,7 @@ interface CaseThumpProps {
   blank?: boolean;
   big?: boolean;
   no?: boolean;
+  animate?: boolean;
   openProject: (index: number) => void;
   getProject: () => {
     index: string | number;
@@ -211,7 +213,7 @@ const CaseThump: React.FC<CaseThumpProps> = (props) => {
 
 				to={'/cases/' + project.case.slug}>
 
-				<Root className={props.className} no={props.no} image={(props.no || project && project.case.coverImage.fluid?.src) || null}>
+				<Root animate={props.animate ?? true} className={props.className} no={props.no} image={(props.no || project && project.case.coverImage.fluid?.src) || null}>
 					<Content>
 					</Content>
 				</Root>

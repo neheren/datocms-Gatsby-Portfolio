@@ -95,6 +95,7 @@ class AllCases extends Component {
 			},
 			chosenProject,
 			projectOpened,
+			animate: false,
 		}
 
 		const tiles = [
@@ -114,7 +115,7 @@ class AllCases extends Component {
 
 					{
 						tiles.map((tile, i) => {
-							return <tile.type {...tile.props} key={i}/>
+							return <tile.type {...tile.props} key={i}  />
 						})
 					}
 				</Root>
