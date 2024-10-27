@@ -19,7 +19,6 @@ const FooterRoot = styled.div<{enableBg?: boolean, enableBorder?: boolean}>`
 	border-top: ${props => props.enableBorder ? '1px solid #565656' : 'none'};
 	background-color: ${props => props.enableBg ? '#fff' : 'none'};
 	z-index: 10;
-	background: white;
 	position: relative;
 `
 
@@ -43,7 +42,7 @@ type Props = {
 	enableBg?: boolean;
 	enableBorder?: boolean;
 }
-const Footer: React.FC = (props: Props) => {
+const Footer: React.FC<Props> = (props) => {
 
 	const {
 		enableBg = false,

@@ -10,7 +10,6 @@ import { useRive } from '@rive-app/react-canvas';
 
 const Root = styled.div<{isProject: boolean}>`
     display: grid;
-    background: ${props => !props.isProject ? '#000' : '#EFEFEF'};
     grid-template-columns: ${props => props.theme.spacing(12)} auto ${props => props.theme.spacing(12)};
     grid-template-rows: ${props => props.theme.spacing(12)} auto ${props => props.theme.spacing(12)};
     height: 100vh;

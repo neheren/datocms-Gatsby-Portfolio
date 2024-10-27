@@ -25,7 +25,7 @@ const IndexPage = ({data}) => {
 				<OuterCases />
 				<About data={data.about} photos={data.aboutPhotos.nodes[0].photos}/>
 				<Tiles/>
-				<Footer/>
+				<Footer enableBg />
 			</div>
 		</HelmetWrapper>
 	</ThemeProvider>

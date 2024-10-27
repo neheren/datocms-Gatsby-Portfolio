@@ -1,15 +1,13 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
-import Link from 'gatsby-plugin-transition-link';
 import MenuOverlay from './MenuOverlay';
 import { window } from 'global'
-import AniLink from 'gatsby-plugin-transition-link/AniLink'
 
 const BURGER_STATES = {
-    ARROW: 'ARROW',
-    BURGER: 'BURGER',
-    EXIT: 'EXIT',
+	ARROW: 'ARROW',
+	BURGER: 'BURGER',
+	EXIT: 'EXIT',
 }
 
 const Burger = styled.div`
@@ -132,70 +130,64 @@ const CrossPart = styled.div`
     opacity: ${props => props.rev ? 1 : 0};
     ${props => props.burgerState === BURGER_STATES.EXIT && css`
         opacity: 1;
-        transform: ${props => props.rev ? 'rotate(-45deg)' : 'rotate(45deg)'}
-    `};
+        transform: ${props => props.rev ? 'rotate(-45deg)' : 'rotate(45deg)'};
+    `}
 
 `
 
 
-export default class Menu extends Component {
-    static propTypes = {
-        isProject: PropTypes.bool,
-    }
+const Menu = ({ isProject }) => {
+	const [lineColor, setLineColor] = useState('white')
+	const [burgerState, setBurgerState] = useState(BURGER_STATES.ARROW)
 
-    componentDidMount(){
-        window.addEventListener('scroll', this.handleScroll.bind(this), true);
-    }
+	useEffect(() => {
+		const handleScroll = () => {
+			setBurgerState(shouldDisplayArrow() ? BURGER_STATES.ARROW : BURGER_STATES.BURGER)
+			setLineColor(window.pageYOffset > window.innerHeight * 2 || burgerState === BURGER_STATES.EXIT ? 'white' : 'white')
+		}
 
-    componentWillUnmount(){
-        window.removeEventListener('scroll', this.handleScroll.bind(this));
-    }
+		window.addEventListener('scroll', handleScroll, true)
+		return () => window.removeEventListener('scroll', handleScroll)
+	}, [burgerState])
 
-    state = {
-        LineColor: 'white',
-        burgerState: BURGER_STATES.ARROW,
-        burgerIndex: 1,
-    }
+	const shouldDisplayArrow = () => {
+		return window.pageYOffset < 8
+	}
 
-    handleScroll() {
-        this.setState({
-            burgerState: this.shouldDisplayArrow () ? BURGER_STATES.ARROW : BURGER_STATES.BURGER,
-        })
-        this.setState({
-            LineColor: (window.pageYOffset > window.innerHeight * 2 || this.state.burgerState === BURGER_STATES.EXIT ? 'white' : 'white')
-        })
-    }
+	const toggleCollapsed = () => {
+		if (window.pageYOffset < 8) {
+			if (isProject) {
+				if(window.location.pathname.includes('cases')) {
+					window.location.href = '/'
+				} else {
+					window.history.back()
+				}
+			}
+			return
+		}
 
-    shouldDisplayArrow () {
-        return window.pageYOffset < 8
-    }
+		setBurgerState(prevState => 
+			prevState === BURGER_STATES.EXIT 
+				? shouldDisplayArrow() ? BURGER_STATES.ARROW : BURGER_STATES.BURGER 
+				: BURGER_STATES.EXIT
+		)
+	}
 
-    toggleCollapsed (){
-        if(window.pageYOffset < 8) {
-            if(this.props.isProject) {
-
-                window.history.back();
-            }
-            // navigate back with window.history
-            return
-        }
-
-        this.setState({
-            burgerState: this.state.burgerState === BURGER_STATES.EXIT ? this.shouldDisplayArrow () ? BURGER_STATES.ARROW : BURGER_STATES.BURGER : BURGER_STATES.EXIT,
-        })
-    }
-
-    render() {
-        return (
-            <>
-            {this.state.burgerState === BURGER_STATES.EXIT && <MenuOverlay onClose={this.toggleCollapsed.bind(this)} />}
-            <Burger isProject={this.props.isProject} onClick={this.toggleCollapsed.bind(this)} burgerState={this.state.burgerState}>
-                <Line collapsed={this.state.collapsed} top burgerState={this.state.burgerState} bgColor={this.state.LineColor}></Line>
-                <Line collapsed={this.state.collapsed} bottom burgerState={this.state.burgerState} bgColor={this.state.LineColor}></Line>
-                <CrossPart collapsed={this.state.collapsed} burgerState={this.state.burgerState} bgColor={this.state.LineColor}/>
-                <CrossPart collapsed={this.state.collapsed} rev burgerState={this.state.burgerState} bgColor={this.state.LineColor}/>
-            </Burger>
-            </>
-        )
-    }
+	return (
+		<>
+			{burgerState === BURGER_STATES.EXIT && <MenuOverlay onClose={toggleCollapsed} />}
+			<Burger isProject={isProject} onClick={toggleCollapsed} burgerState={burgerState}>
+				<Line top burgerState={burgerState} bgColor={lineColor}></Line>
+				<Line bottom burgerState={burgerState} bgColor={lineColor}></Line>
+				<CrossPart burgerState={burgerState} bgColor={lineColor}/>
+				<CrossPart rev burgerState={burgerState} bgColor={lineColor}/>
+			</Burger>
+		</>
+	)
 }
+
+Menu.propTypes = {
+	isProject: PropTypes.bool,
+}
+
+export default Menu
