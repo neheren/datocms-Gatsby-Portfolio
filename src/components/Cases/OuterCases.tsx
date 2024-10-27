@@ -129,13 +129,6 @@ interface IProps extends PageProps {
 }
 
 const OuterWork: React.FC<IProps> = ({ data }) => {
-    const [chosenProject, setChosenProject] = useState(-1);
-    const [projectOpened, setProjectOpened] = useState(false);
-
-    const openProject = (index: number) => {
-        setProjectOpened(!projectOpened);
-        setChosenProject(index);
-    };
 
     const workArray = data.allDatoCmsWork.edges
         .filter(workNode => !!workNode.node.shown)
@@ -148,7 +141,6 @@ const OuterWork: React.FC<IProps> = ({ data }) => {
     let tileIndex = -1;
 
     const p = {
-        openProject: (index: number) => () => openProject(index),
         getProject: () => {
             projectIndex++;
             return { case: workArray[projectIndex], index: projectIndex };
@@ -157,9 +149,6 @@ const OuterWork: React.FC<IProps> = ({ data }) => {
             tileIndex++;
             return tileIndex;
         },
-        chosenProject,
-        projectOpened,
-        
     };
 
     const tiles = [

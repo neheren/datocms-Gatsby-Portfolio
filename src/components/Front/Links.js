@@ -5,7 +5,7 @@ import AniLink from 'gatsby-plugin-transition-link/AniLink'
 const Root = styled.div`
     height: 100%;
     display: flex;
-    align-items:center;
+    align-items: center;
     grid-column: 2 / 4;
     grid-row: 1 / 2;
     z-index: 10;

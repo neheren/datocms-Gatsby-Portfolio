@@ -33,6 +33,10 @@ export function VideoComponent(props: VideoProps) {
     const [blurAmount, setBlurAmount] = useState(0)
 
     useEffect(() => {
+        const video = document.querySelector('video')
+        if (video) {
+            video.setAttribute("playsinline", "true");
+        }
         const handleScroll = () => {
             const scrollY = window.scrollY
             const maxBlur = 40 // Maximum blur in pixels

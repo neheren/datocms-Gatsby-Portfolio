@@ -152,7 +152,6 @@ interface CaseThumpProps {
   big?: boolean;
   no?: boolean;
   animate?: boolean;
-  openProject: (index: number) => void;
   getProject: () => {
     index: string | number;
     case: {
@@ -192,7 +191,6 @@ const CaseThump: React.FC<CaseThumpProps> = (props) => {
 			}
 			</Title>
 			<AniLink 
-				onClick={props.openProject(project.index)}
 				cover
 				bg={`
           url(${slytLogo})

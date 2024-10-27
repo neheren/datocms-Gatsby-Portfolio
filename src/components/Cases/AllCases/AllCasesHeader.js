@@ -49,7 +49,6 @@ export const AllCasesHeader = () => {
 				<AniLink to="/" swipe direction="right" duration={0.4} style={{textDecoration: 'none'}}>
 					<LinkItem first>schlüter</LinkItem>
 				</AniLink>
-
 				<Arrow/>
 			</UpperLeft>
 		</Root>

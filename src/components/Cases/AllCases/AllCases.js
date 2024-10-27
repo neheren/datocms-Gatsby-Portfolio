@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
-import { graphql, StaticQuery  } from 'gatsby'
 import CaseThump from '../CaseThump'
 import Brick from '../Brick'
 import Footer from '../../Footer/Footer'
@@ -35,10 +34,6 @@ const C = styled(CaseThump)`
     `}
 `
 
-const A = styled(CaseThump)`
-    content: 'all projects';
-`
-
 const Root = styled.div`
     overflow:hidden;
     padding-top: 1px;
@@ -61,15 +56,6 @@ class AllCases extends Component {
 		work: PropTypes.any,
 	}
 
-	state = {
-		chosenProject: -1,
-		projectOpened: false,
-	}
-
-	openProject(index){
-		this.setState({projectOpened: !this.state.projectOpened, chosenProject: index})
-	}
-
 	render() {
 		const workArray = this.props.data.allDatoCmsWork.edges
 			.filter(workNode => !!workNode.node.shown)
@@ -78,10 +64,7 @@ class AllCases extends Component {
 			return {title, slug, coverImage}
 		})
 
-		const {chosenProject, projectOpened} = this.state;
-
 		const p = {
-			openProject: (index) => this.openProject.bind(this, index),
 			projectIndex: -1,
 			key: this.projectIndex,
 			getProject: () => {
@@ -93,8 +76,6 @@ class AllCases extends Component {
 				p.tileIndex++
 				return p.tileIndex
 			},
-			chosenProject,
-			projectOpened,
 			animate: false,
 		}
 
@@ -112,7 +93,6 @@ class AllCases extends Component {
 		return (
 			<>
 				<Root>
-
 					{
 						tiles.map((tile, i) => {
 							return <tile.type {...tile.props} key={i}  />

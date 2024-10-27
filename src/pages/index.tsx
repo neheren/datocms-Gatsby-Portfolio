@@ -15,7 +15,7 @@ import HelmetWrapper from '../components/layout'
 
 const IndexPage = ({data}) => {
 
-	return	<ThemeProvider theme={theme}>
+	return <ThemeProvider theme={theme}>
 		<HelmetWrapper>
 			<div style={{position: 'relative', background: '#000'}} >
 				<h1 style={{display: 'none'}}>Portfolio by Nikolaj Schlüter Nielsen</h1>

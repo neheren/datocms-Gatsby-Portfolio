@@ -1,16 +1,14 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import slytLogo from '../../graphics/slyt.svg'
-import nikoLogo from '../../graphics/nikolaj.svg'
 import arrowDown from '../../graphics/downArrow.svg'
 import Links from './Links'
 import Copyright from '../Copyright'
 import { VideoComponent } from './Video'
 import ProjectLinks from './ProjectLinks'
-import Rive, { useRive } from '@rive-app/react-canvas';
+import { useRive } from '@rive-app/react-canvas';
 
-const Root = styled.div`
+const Root = styled.div<{isProject: boolean}>`
     display: grid;
     background: ${props => !props.isProject ? '#000' : '#EFEFEF'};
     grid-template-columns: ${props => props.theme.spacing(12)} auto ${props => props.theme.spacing(12)};
@@ -75,7 +73,7 @@ const LogoImg = styled.div`
 
 
 
-const RiveAnimation = () => {
+export const RiveAnimation = () => {
     const { rive, RiveComponent } = useRive({
         src: '/slytter.riv',
         autoplay: true,
@@ -131,22 +129,10 @@ const scrollDown = () => {
 const Front = (props) => {
 	const { isProject } = props || false
 
-	const [firstNameShown, setFirstNameShown] = useState(0)
-	useEffect(() => {
-		const timer = setInterval(() => {
-			setFirstNameShown((value) => (value + 1) % 4)
-		}, 300)
-		return () => clearInterval(timer)
-
-	}, [])
-
-
-
 	if(!props.videoLink) {
 		return <FallbackRoot>
 			<MenuWrapper />
 			{isProject ? <ProjectLinks caseName={props.caseName} /> : < Links/>}
-
 		</FallbackRoot>
 	}
 
@@ -159,7 +145,7 @@ const Front = (props) => {
 			{isProject ? <ProjectLinks caseName={props.caseName} /> : < Links/>}
 			<Video>
 				<VideoComponent videoLink={props.videoLink} isProject={isProject} />
-				{!isProject && <RiveAnimation src={firstNameShown === 0 ? nikoLogo : slytLogo} />}
+				{!isProject && <RiveAnimation/>}
 			</Video>
 			<ArrowDown src={arrowDown} onClick={scrollDown.bind(this)} black={isProject}/>
 		</Root>

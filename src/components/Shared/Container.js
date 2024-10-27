@@ -6,10 +6,7 @@ const Root = styled.div`
   position: relative;
   display: grid;
   ${props => !props.fluid && css`
-    grid-template-columns: 1fr 525px 525px 1fr;
-    @media ${props.theme.media.xl} {
-      grid-template-columns: 1fr 435px 435px 1fr;
-    }
+    grid-template-columns: 1fr 435px 435px 1fr;
     @media ${props.theme.media.lg} {
       grid-template-columns: 1fr 272px 272px 1fr;
     }

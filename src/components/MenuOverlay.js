@@ -3,20 +3,18 @@ import React from 'react'
 import styled from 'styled-components'
 import HoverTransformer from './HoverTransformer'
 import slyt from '../graphics/slyt.svg'
-import nikolaj from '../graphics/nikolaj.svg'
 import PropTypes from 'prop-types'
-import AniLink from 'gatsby-plugin-transition-link/AniLink'
 import SlytterAniLink from './Shared/SlytterAniLink'
-
+import { RiveAnimation } from './Front/Front'
 const Root = styled.div`
     z-index: 2999;
     @keyframes fadeIn {
-        from{
-            opacity: 0;
-        }
-        to{
-            opacity: 1;
-        }
+			from{
+					opacity: 0;
+			}
+			to{
+					opacity: 1;
+			}
     }
     animation: 0.4s fadeIn forwards;
     position: fixed;
@@ -30,33 +28,33 @@ const Root = styled.div`
     grid-template-columns: auto;
     grid-template-rows: auto;
     backdrop-filter: invert(1) grayscale(1);
-
-
 `
 
 const MenuWrapper = styled.div`
 	justify-self: center;
 	align-self: center;
+	width: 100%;
+	max-width: 300px;
 `
 
 
 const MenuLines = styled.div`
 	text-align: center;
 	font-size: 16px;
-    background: rgb(255,255,255);
+	background: rgb(255,255,255);
 	padding: 20px 0; 
 	max-width: 300px;
 	margin: 10px auto;
 	color: #292929;
 	width: 100%;
-	font-weight: lighter;
+	font-weight: normal;
 	cursor: pointer;
     transition: 0.4s cubic-bezier(0, 0.59, 0.08, 1);
 	:hover {
 		max-width: 270px;
 		font-weight: bold;
 	}
-    @keyframes moveOut {
+    @keyframes moveOut1 {
         0% {
     	    opacity: 0;
             transform: perspective(0px) rotateX(90deg) rotateY(0) scale(0.90);
@@ -66,7 +64,7 @@ const MenuLines = styled.div`
             transform: perspective(1000px) rotateX(0deg) rotateY(0) scale(1);; 
         }
     }
-    animation: moveOut ${props => 0.6 + 0.15 * props.i}s forwards cubic-bezier(0.77, 0, 0.175, 1);
+    animation: moveOut1 ${props => 0.6 + 0.15 * props.i}s forwards cubic-bezier(0.77, 0, 0.175, 1);
 
 `
 
@@ -82,13 +80,14 @@ function MenuOverlay(props) {
 		onClose,
 	} = props
 
-
-
 	return (
 		<Root onClick={onClose}>
 			<MenuWrapper >
 				<HoverTransformer>
-					<Logo src={slyt}></Logo>
+					<div style={{width: '100%', height: '300px', marginBottom: -60}}>
+						<RiveAnimation/>
+					</div>
+					{/* <Logo src={slyt}/> */}
 				</HoverTransformer>
 				<SlytterAniLink to="/" onClick={onClose}>
 					<HoverTransformer>

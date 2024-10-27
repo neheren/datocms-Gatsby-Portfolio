@@ -8,6 +8,7 @@
     "@mdx-js/react": "^2.2.1",
     "@rive-app/react-canvas": "^4.14.4",
     "babel-plugin-styled-components": "^1.10.6",
+    "dayjs": "^1.11.13",
     "dotenv": "^7.0.0",
     "gatsby": "^5.3.3",
     "gatsby-image": "^2.0.40",

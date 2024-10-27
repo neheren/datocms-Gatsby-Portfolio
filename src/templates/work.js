@@ -14,7 +14,7 @@ import 'swiper/css/pagination'
 import {usePreLoader} from '../hooks/usePreloader'
 import Footer from '../components/Footer/Footer'
 import Markdown from '../components/Shared/Markdown'
-
+import dayjs from 'dayjs'
 
 const Doc = styled.div`
   background-color: #EFEFEF;
@@ -33,7 +33,6 @@ const Dot = styled.div`
   ${props => props.active && css`
 	background-color: #717171;
   `}
-  
 `
 
 
@@ -65,6 +64,11 @@ const ImageWrapper = styled.span`
   padding-right: ${props => props.theme.spacing(2)};
 `
 
+const ReleaseDate = styled.div`
+	margin-bottom: ${props => props.theme.spacing(1)};
+	font-size: 14px;
+	font-weight: 400;
+`
 
 const Work = ({ data }) => {
 	const items = data.datoCmsWork.gallery.map(({ fluid }) => (
@@ -78,6 +82,7 @@ const Work = ({ data }) => {
 		type: 'image',
 	})))
 
+	console.log(data.datoCmsWork)
 
 	return (
 		<ThemeProvider theme={theme}>
@@ -90,7 +95,10 @@ const Work = ({ data }) => {
 			<Doc>
 				<Menu isProject></Menu>
 				<Container>
-					<Header>{data.datoCmsWork.title}</Header>
+					<Header>
+						{data.datoCmsWork.title}
+					</Header>
+					<ReleaseDate>{dayjs(data.datoCmsWork.releaseDate).format('D. MMMM YYYY')}</ReleaseDate>
 					{
 						data.datoCmsWork.tags.map((tag, i) => {
 							return <Tag key={i}>{tag.tagLine}</Tag>
@@ -116,7 +124,7 @@ const Work = ({ data }) => {
 						/>
 					</div>}
 
-					<Markdown columnCount={2}>
+					<Markdown columnCount={1}>
 						{data.datoCmsWork.description}
 					</Markdown>
 
@@ -149,6 +157,7 @@ export const query = graphql`
           src
         }
       }
+			releaseDate
       description
       coverImage {
         url
